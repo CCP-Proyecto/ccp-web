@@ -12,8 +12,9 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
 import { authClient } from "@/lib/auth-client";
+import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 export function LoginForm({
   className,
@@ -21,8 +22,10 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
+
   const handleLogin = async () => {
-    const { data, error } = await authClient.signIn.email(
+    const { error } = await authClient.signIn.email(
       {
         email,
         password,
@@ -36,27 +39,14 @@ export function LoginForm({
 
     if (error) {
       console.log(error);
+      return;
     }
 
-    // redirect to dashboard
-    console.log(data);
-    console.log(data?.user);
+    router.push("/");
   };
 
   const handleSignUp = async () => {
-    const { data, error } = await authClient.signUp.email({
-      email,
-      password,
-      name: "Test",
-      roles: ["admin"],
-    });
-
-    if (error) {
-      console.log(error);
-    }
-
-    console.log(data);
-    console.log(data?.user);
+    router.push("/sign-up");
   };
 
   return (
