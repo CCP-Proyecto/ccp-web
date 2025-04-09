@@ -26,7 +26,7 @@ export const AdminDashboard = () => {
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           <Card className="border shadow-sm">
-            <Link href="/customers">
+            <Link href="/manufacturers">
               <CardContent className="p-0">
                 <div className="flex flex-col items-center p-6">
                   <div className="mb-4 flex w-full justify-center rounded-lg p-8">
