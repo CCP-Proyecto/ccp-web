@@ -25,6 +25,7 @@ import { ZodError } from "zod";
 export const createTRPCContext = async (opts: { headers: Headers }) => {
 	return {
 		...opts,
+    cookie: opts.headers.get("cookie")
 	};
 };
 
