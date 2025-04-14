@@ -5,7 +5,7 @@
 !src/*
 !public/*
 !next.config.ts
-!postcss.config.mjs
+!postcss.config.js
 !components.json
 !.env.local
 

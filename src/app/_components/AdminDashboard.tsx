@@ -6,15 +6,6 @@ export const AdminDashboard = () => {
   return (
     <div className="flex min-h-screen flex-col">
       {/* Header */}
-      <header className="flex items-center justify-between bg-slate-700 p-4 text-white">
-        <div className="font-bold text-4xl">CCP</div>
-        <div className="mx-auto text-center text-lg">
-          <span className="border-t border-b px-4 py-1">
-            COMPRAS FÁCILES, ENVÍOS RÁPIDOS
-          </span>
-        </div>
-        <div className="w-[100px]" /> {/* Spacer for alignment */}
-      </header>
 
       {/* Main Content */}
       <main className="flex-1 p-6">
