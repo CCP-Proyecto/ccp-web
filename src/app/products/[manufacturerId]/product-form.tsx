@@ -77,11 +77,13 @@ export function ProductForm({ form, index, isLast }: ProductFormProps) {
         render={({ field }) => (
           <FormItem>
             <Select onValueChange={field.onChange} defaultValue={field.value}>
-              <FormControl>
-                <SelectTrigger className="h-14 rounded-full px-4">
-                  <div className="flex w-full justify-between">
+              <FormControl className="bg-transparent!">
+                <SelectTrigger className="h-14 w-full rounded-full px-4 py-6">
+                  <div className="flex w-full items-center justify-between">
                     <span className="text-muted-foreground">Cantidad</span>
-                    <SelectValue placeholder="0" />
+                    <div className="flex justify-between">
+                      <SelectValue placeholder="0" />
+                    </div>
                   </div>
                 </SelectTrigger>
               </FormControl>
@@ -126,7 +128,6 @@ export function ProductForm({ form, index, isLast }: ProductFormProps) {
               <Input
                 {...field}
                 placeholder="Precio unitario"
-                type="number"
                 className="h-14 rounded-full px-4"
               />
             </FormControl>

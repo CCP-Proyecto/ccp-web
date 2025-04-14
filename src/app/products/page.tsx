@@ -59,21 +59,14 @@ export default function AgregarProductosPage() {
 
         {fabricanteSeleccionado && (
           <div className="mt-8 flex justify-center">
-            <Button
-              onClick={handleContinuar}
-              className="h-12 w-40 rounded-full bg-slate-500 text-white shadow-md hover:bg-slate-600"
-            >
+            <Button onClick={handleContinuar} variant="primaryCCP">
               Continuar
             </Button>
           </div>
         )}
 
         <div className="mt-8 flex justify-center">
-          <Button
-            onClick={handleVolver}
-            variant="outline"
-            className="h-12 w-40 rounded-full border-none bg-slate-500 text-white shadow-md hover:bg-slate-600"
-          >
+          <Button onClick={handleVolver} variant="primaryCCP">
             Volver
           </Button>
         </div>

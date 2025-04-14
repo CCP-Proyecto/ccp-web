@@ -7,8 +7,9 @@ import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { ProductForm } from "./product-form";
 import { api } from "@/trpc/react";
+import { ProductForm } from "./product-form";
+import { toast } from "sonner";
 
 const productoSchema = z.object({
   name: z.string().min(2, "El nombre es requerido"),
@@ -54,11 +55,12 @@ export default function AgregarProductosPage() {
   const { mutate: addProductsToManufacturer } =
     api.product.addProductsToManufacturer.useMutation({
       onSuccess: () => {
+        toast("Registro de producto(s) exitoso");
         router.push("/");
       },
 
       onError: (error) => {
-        console.error("Error al guardar los productos:", error);
+        toast.error("Error al guardar los productos");
       },
     });
 
@@ -106,7 +108,8 @@ export default function AgregarProductosPage() {
             <Button
               type="button"
               onClick={handleAddProduct}
-              className="h-14 w-14 rounded-full bg-slate-500 p-0 text-white hover:bg-slate-600"
+              variant="primaryCCP"
+              size="defaultIcon"
             >
               <Plus className="h-8 w-8" />
               <span className="sr-only">Agregar producto</span>
@@ -114,10 +117,7 @@ export default function AgregarProductosPage() {
           </div>
 
           <div className="mt-8 flex justify-center">
-            <Button
-              type="submit"
-              className="h-14 w-full rounded-full bg-slate-500 text-lg text-white hover:bg-slate-600"
-            >
+            <Button type="submit" variant="primaryCCP">
               Finalizar
             </Button>
           </div>

@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const salesmanRegistrationSchema = z.object({
   name: z.string().min(3, "El nombre completo es demasiado corto"),
@@ -47,6 +49,8 @@ export default function RegistroVendedores() {
     },
   });
 
+  const router = useRouter();
+
   const onSubmit = async (data: SalesmanRegistrationValues) => {
     setIsSubmitting(true);
     try {
@@ -62,10 +66,11 @@ export default function RegistroVendedores() {
         console.log(error.message);
       }
 
+      toast("Registro exitoso");
+
       form.reset();
     } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("An error occurred. Please try again.");
+      toast.error("Error al enviar el formulario");
     } finally {
       setIsSubmitting(false);
     }
@@ -73,7 +78,7 @@ export default function RegistroVendedores() {
 
   const handleGoBack = () => {
     // Implementar lógica para volver atrás
-    console.log("Volver atrás");
+    router.back();
   };
 
   return (
@@ -178,20 +183,11 @@ export default function RegistroVendedores() {
           />
 
           <div className="flex flex-col items-center gap-4 pt-4">
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="h-12 w-40 rounded-full bg-slate-500 text-white shadow-md hover:bg-slate-600"
-            >
+            <Button type="submit" disabled={isSubmitting} variant="primaryCCP">
               Registrarse
             </Button>
 
-            <Button
-              type="button"
-              variant="outline"
-              onClick={handleGoBack}
-              className="h-12 w-40 rounded-full border-none bg-slate-500 text-white shadow-md hover:bg-slate-600"
-            >
+            <Button type="button" variant="ghostCCP" onClick={handleGoBack}>
               Volver
             </Button>
           </div>

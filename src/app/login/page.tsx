@@ -1,8 +1,8 @@
 "use client";
 
-import { LoginForm } from "@/components/login-form";
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
+import { LoginForm } from "./_components/LoginForm";
 
 export default function Page() {
   const { error, data: session } = authClient.useSession();

@@ -15,6 +15,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { api } from "@/trpc/react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const registroFabricanteSchema = z.object({
   name: z.string().min(3, "El nombre de cuenta es demasiado corto"),
@@ -44,13 +46,15 @@ export default function RegistroFabricantes() {
     },
   });
 
+  const router = useRouter();
+
   const { mutate: createManufacturer, isPending } =
     api.manufacurer.createManufacturer.useMutation({
       onSuccess: () => {
-        alert("Registro exitoso");
+        toast("Registro exitoso");
       },
       onError: (error) => {
-        console.error("Error al enviar el formulario:", error);
+        toast.error("Error al enviar el formulario");
       },
     });
 
@@ -60,7 +64,7 @@ export default function RegistroFabricantes() {
 
   const handleGoBack = () => {
     // Implementar lógica para volver atrás
-    console.log("Volver atrás");
+    router.back();
   };
 
   return (
@@ -165,16 +169,17 @@ export default function RegistroFabricantes() {
             <Button
               type="submit"
               disabled={isPending}
-              className="h-12 w-40 rounded-full bg-slate-500 text-white hover:bg-slate-600"
+              // className="h-12 w-40 rounded-full bg-primary-ccp hover:bg-slate-600"
+              variant="primaryCCP"
             >
               Registrarse
             </Button>
 
             <Button
               type="button"
-              variant="outline"
+              variant="ghostCCP"
               onClick={handleGoBack}
-              className="h-12 w-40 rounded-full border-none bg-slate-500 text-white hover:bg-slate-600"
+              // className="h-12 w-40 rounded-full border-none bg-slate-500 text-white hover:bg-slate-600"
             >
               Volver
             </Button>
