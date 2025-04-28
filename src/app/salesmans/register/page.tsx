@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { authClient } from "@/lib/auth-client";
+import { signUp } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
@@ -55,7 +55,7 @@ export default function RegistroVendedores() {
     setIsSubmitting(true);
     try {
       const { email, password, name } = data;
-      const { error } = await authClient.signUp.email({
+      const { error } = await signUp.email({
         email,
         password,
         name,

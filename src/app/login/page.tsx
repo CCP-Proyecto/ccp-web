@@ -1,14 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { authClient } from "@/lib/auth-client";
+import { signOut, useSession } from "@/lib/auth-client";
 import { LoginForm } from "./_components/LoginForm";
 
 export default function Page() {
-  const { error, data: session } = authClient.useSession();
+  const { error, data: session } = useSession();
 
   const handleSignOut = async () => {
-    const { data, error } = await authClient.signOut();
+    const { data, error } = await signOut();
 
     if (error) {
       console.log(error);

@@ -3,11 +3,11 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-import { authClient } from "@/lib/auth-client";
+import { useSession } from "@/lib/auth-client";
 import { AdminDashboard } from "./_components/AdminDashboard";
 
 export default function Page() {
-  const { error, data: session, isPending } = authClient.useSession();
+  const { error, data: session, isPending } = useSession();
 
   const router = useRouter();
 

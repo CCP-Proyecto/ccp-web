@@ -9,6 +9,9 @@ export const env = createEnv({
   server: {
     NODE_ENV: type("'development' | 'test' | 'production'"),
     API_MS: type("string"),
+    BETTER_AUTH_SECRET: type("string"),
+    BETTER_AUTH_URL: type("string"),
+    DATABASE_URL: type("string"),
   },
 
   /**
@@ -16,19 +19,13 @@ export const env = createEnv({
    * isn't built with invalid env vars. To expose them to the client, prefix them with
    * `NEXT_PUBLIC_`.
    */
-  client: {
-    NEXT_PUBLIC_USERS_MS: type("string"),
-    // NEXT_PUBLIC_CLIENTVAR: z.string(),
-  },
+  client: {},
 
   /**
    * You can't destruct `process.env` as a regular object in the Next.js edge runtimes (e.g.
    * middlewares) or client-side so we need to destruct manually.
    */
-  experimental__runtimeEnv: {
-    NEXT_PUBLIC_USERS_MS: process.env.NEXT_PUBLIC_USERS_MS,
-    // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
-  },
+  experimental__runtimeEnv: {},
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
    * useful for Docker builds.

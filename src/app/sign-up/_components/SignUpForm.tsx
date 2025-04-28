@@ -24,7 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { authClient } from "@/lib/auth-client";
+import { signUp } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
@@ -82,7 +82,7 @@ export const SignUpForm = () => {
 
     try {
       const { email, password, name } = data;
-      const { error } = await authClient.signUp.email({
+      const { error } = await signUp.email({
         email,
         password,
         name,

@@ -5,6 +5,7 @@ import { Comfortaa } from "next/font/google";
 
 import { Toaster } from "@/components/ui/sonner";
 import { TRPCReactProvider } from "@/trpc/react";
+import { LogoutButton } from "./_components/LogoutButton";
 
 export const metadata: Metadata = {
   title: "CCP Web",
@@ -31,7 +32,7 @@ export default function RootLayout({
               COMPRAS FÁCILES, ENVÍOS RÁPIDOS
             </span>
           </div>
-          <div className="w-[100px]" /> {/* Spacer for alignment */}
+          <LogoutButton />
         </header>
 
         <TRPCReactProvider>{children}</TRPCReactProvider>
