@@ -99,7 +99,11 @@ export const SignUpForm = () => {
 
       router.push("/login");
     } catch (error) {
-      toast.error("Error al enviar el formulario");
+      toast.error("Error al enviar el formulario", {
+        classNames: {
+          toast: "!bg-red-500/90",
+        },
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -107,7 +111,7 @@ export const SignUpForm = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center p-4">
-      <div className="w-full max-w-md space-y-6 rounded-lg p-8">
+      <div className="w-full max-w-lg space-y-6 rounded-lg p-8">
         <div className="space-y-2">
           <h1 className="font-bold text-3xl">Empezar ahora</h1>
           <p className="text-gray-400">Registrarte es muy fácil y rápido</p>
@@ -123,7 +127,7 @@ export const SignUpForm = () => {
                   <FormLabel>Nombre</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="John Doe"
+                      placeholder="Nombre completo"
                       {...field}
                       className="h-12 rounded-md border-[#333] placeholder:text-gray-500 focus:border-gray-500 focus:ring-0"
                     />
@@ -141,7 +145,7 @@ export const SignUpForm = () => {
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="you@example.com"
+                      placeholder="email@ejemplo.com"
                       type="email"
                       {...field}
                       className="h-12 rounded-md border-[#333] placeholder:text-gray-500 focus:border-gray-500 focus:ring-0"
@@ -186,11 +190,11 @@ export const SignUpForm = () => {
                       defaultValue={field.value}
                     >
                       <FormControl>
-                        <SelectTrigger className="h-12 rounded-md border-[#333] focus:ring-0">
-                          <SelectValue placeholder="Select ID type" />
+                        <SelectTrigger className="rounded-md border-[#333] focus:ring-0">
+                          <SelectValue placeholder="Tipo de identificación" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent className="border-[#333]">
+                      <SelectContent className="border-[#333] bg-white">
                         <SelectItem value="CC">Cédula de Ciudadanía</SelectItem>
                         <SelectItem value="NIT">NIT</SelectItem>
                         <SelectItem value="other">Otro</SelectItem>
@@ -209,7 +213,7 @@ export const SignUpForm = () => {
                     <FormLabel>Número de identificación</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter ID number"
+                        placeholder="Número de identificación"
                         {...field}
                         className="h-12 rounded-md border-[#333] placeholder:text-gray-500 focus:border-gray-500 focus:ring-0"
                       />
@@ -243,7 +247,7 @@ export const SignUpForm = () => {
               disabled={isSubmitting}
               className="h-12 w-full rounded-md bg-gray-200 font-medium text-black hover:bg-gray-300"
             >
-              {isSubmitting ? "Creating Account..." : "Sign Up"}
+              {isSubmitting ? "Creando Cuenta..." : "Regístrate"}
             </Button>
           </form>
         </Form>

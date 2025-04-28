@@ -70,7 +70,11 @@ export default function RegistroVendedores() {
 
       form.reset();
     } catch (error) {
-      toast.error("Error al enviar el formulario");
+      toast.error("Error al enviar el formulario", {
+        classNames: {
+          toast: "!bg-red-500/90",
+        },
+      });
     } finally {
       setIsSubmitting(false);
     }

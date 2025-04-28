@@ -5,6 +5,7 @@ import { Comfortaa } from "next/font/google";
 
 import { Toaster } from "@/components/ui/sonner";
 import { TRPCReactProvider } from "@/trpc/react";
+import Link from "next/link";
 import { LogoutButton } from "./_components/LogoutButton";
 
 export const metadata: Metadata = {
@@ -24,19 +25,20 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${comfortaa.variable}`}>
-      <body>
-        <header className="flex items-center justify-between bg-secondary-ccp p-4 text-white">
-          <div className="font-bold text-4xl text-foreground-ccp">CCP</div>
-          <div className="mx-auto text-center text-lg">
-            <span className="px-4 py-1 text-foreground-ccp">
-              COMPRAS FÁCILES, ENVÍOS RÁPIDOS
-            </span>
+      <body className="grid h-screen grid-rows-[auto_1fr]">
+        <header className="sticky top-0 z-10 flex items-center justify-between bg-secondary-ccp p-4 text-white">
+          <Link href="/">
+            <div className="font-bold text-4xl text-foreground-ccp">CCP</div>
+          </Link>
+          <div className="text-lg text-foreground-ccp">
+            COMPRAS FÁCILES, ENVÍOS RÁPIDOS
           </div>
           <LogoutButton />
         </header>
-
-        <TRPCReactProvider>{children}</TRPCReactProvider>
-        <Toaster />
+        <TRPCReactProvider>
+          {children}
+          <Toaster />
+        </TRPCReactProvider>
       </body>
     </html>
   );

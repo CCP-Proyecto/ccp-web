@@ -54,7 +54,11 @@ export default function RegistroFabricantes() {
         toast("Registro exitoso");
       },
       onError: (error) => {
-        toast.error("Error al enviar el formulario");
+        toast.error("Error al enviar el formulario", {
+          classNames: {
+            toast: "!bg-red-500/90",
+          },
+        });
       },
     });
 
