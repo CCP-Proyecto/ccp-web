@@ -8,8 +8,8 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { api } from "@/trpc/react";
-import { ProductForm } from "./product-form";
 import { toast } from "sonner";
+import { ProductForm } from "./product-form";
 
 const productoSchema = z.object({
   name: z.string().min(2, "El nombre es requerido"),
@@ -60,7 +60,11 @@ export default function AgregarProductosPage() {
       },
 
       onError: (error) => {
-        toast.error("Error al guardar los productos");
+        toast.error("Error al guardar los productos", {
+          classNames: {
+            toast: "!bg-red-500/90",
+          },
+        });
       },
     });
 
@@ -116,9 +120,16 @@ export default function AgregarProductosPage() {
             </Button>
           </div>
 
-          <div className="mt-8 flex justify-center">
+          <div className="mt-8 flex flex-col items-center justify-center gap-8">
             <Button type="submit" variant="primaryCCP">
               Finalizar
+            </Button>
+            <Button
+              type="button"
+              variant="ghostCCP"
+              onClick={() => router.back()}
+            >
+              Volver
             </Button>
           </div>
         </form>

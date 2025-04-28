@@ -13,19 +13,18 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function AgregarProductosPage() {
-  const [fabricanteSeleccionado, setFabricanteSeleccionado] =
-    useState<string>("");
+  const [selectedManufacturer, setSelectedManufacturer] = useState<string>("");
   const router = useRouter();
   const { data: manufacturers, isLoading } =
     api.manufacurer.getAllManufacturers.useQuery();
 
-  const handleSeleccionFabricante = (value: string) => {
-    setFabricanteSeleccionado(value);
+  const handleManufacturerSelection = (value: string) => {
+    setSelectedManufacturer(value);
   };
 
   const handleContinuar = () => {
-    if (fabricanteSeleccionado) {
-      router.push(`/products/${fabricanteSeleccionado}`);
+    if (selectedManufacturer) {
+      router.push(`/products/${selectedManufacturer}`);
     }
   };
 
@@ -44,7 +43,7 @@ export default function AgregarProductosPage() {
           Seleccione el fabricante al cual quiere agregar uno o varios productos
         </h1>
 
-        <Select onValueChange={handleSeleccionFabricante}>
+        <Select onValueChange={handleManufacturerSelection}>
           <SelectTrigger className="h-14 w-full rounded-full border-gray-300">
             <SelectValue placeholder="Selecciona un fabricante" />
           </SelectTrigger>
@@ -57,7 +56,7 @@ export default function AgregarProductosPage() {
           </SelectContent>
         </Select>
 
-        {fabricanteSeleccionado && (
+        {selectedManufacturer && (
           <div className="mt-8 flex justify-center">
             <Button onClick={handleContinuar} variant="primaryCCP">
               Continuar

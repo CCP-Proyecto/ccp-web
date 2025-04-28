@@ -51,11 +51,7 @@ export default function VentasPage() {
       </div>
 
       <div className="mt-auto pt-16">
-        <Button
-          onClick={handleGoBack}
-          variant="primaryCCP"
-          // className="h-12 w-40 rounded-full bg-slate-500 text-white shadow-md hover:bg-slate-600"
-        >
+        <Button onClick={handleGoBack} variant="primaryCCP">
           Volver
         </Button>
       </div>

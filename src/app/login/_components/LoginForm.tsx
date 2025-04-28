@@ -16,7 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { authClient } from "@/lib/auth-client";
+import { signIn } from "@/lib/auth-client";
 import { toast } from "sonner";
 
 const loginSchema = z.object({
@@ -45,7 +45,7 @@ export const LoginForm = () => {
     email: string;
     password: string;
   }) => {
-    const { error } = await authClient.signIn.email(
+    const { error } = await signIn.email(
       {
         email,
         password,
@@ -59,7 +59,11 @@ export const LoginForm = () => {
 
     if (error) {
       console.log(error);
-      toast.error("Error al iniciar sesión");
+      toast.error("Error al iniciar sesión", {
+        classNames: {
+          toast: "!bg-red-500/90",
+        },
+      });
       return;
     }
 
@@ -131,7 +135,7 @@ export const LoginForm = () => {
                 href="/sign-up"
                 className="text-secondary-ccp transition-colors hover:text-slate-800"
               >
-                Registrate
+                Regístrate
               </Link>
             </div>
           </form>
