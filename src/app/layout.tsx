@@ -26,11 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${comfortaa.variable}`}>
       <body className="grid h-screen grid-rows-[auto_1fr]">
-        <header className="sticky top-0 z-10 flex items-center justify-between bg-secondary-ccp p-4 text-white">
+        <header className="sticky top-0 z-10 flex h-20 items-center justify-between bg-secondary-ccp p-4 text-white">
           <Link href="/">
             <div className="font-bold text-4xl text-foreground-ccp">CCP</div>
           </Link>
-          <div className="text-lg text-foreground-ccp">
+          <div className="text-foreground-ccp text-lg">
             COMPRAS FÁCILES, ENVÍOS RÁPIDOS
           </div>
           <LogoutButton />
