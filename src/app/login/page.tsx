@@ -21,18 +21,6 @@ export default function Page() {
     <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
       <div className="w-full max-w-sm">
         <LoginForm />
-
-        {error && <div>{JSON.stringify(error)}</div>}
-
-        <pre>
-          <code>{JSON.stringify(session?.user, null, 2)}</code>
-        </pre>
-
-        {session?.user && (
-          <Button variant="default" onClick={handleSignOut}>
-            Sign out
-          </Button>
-        )}
       </div>
     </div>
   );
