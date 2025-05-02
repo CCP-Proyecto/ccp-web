@@ -1,139 +1,76 @@
 "use client";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Plus } from "lucide-react";
-import { useParams, useRouter } from "next/navigation";
-import { useFieldArray, useForm } from "react-hook-form";
-import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { api } from "@/trpc/react";
-import { toast } from "sonner";
-import { ProductForm } from "./product-form";
-
-const productoSchema = z.object({
-  name: z.string().min(2, "El nombre es requerido"),
-  description: z.string().min(5, "La descripción es requerida"),
-  amount: z.string().min(1, "La cantidad es requerida"),
-  storageCondition: z
-    .string()
-    .min(5, "Las condiciones de almacenamiento son requeridas"),
-  price: z.string().min(0, "El precio unitario es requerido"),
-});
-
-const productosSchema = z.object({
-  productos: z.array(productoSchema),
-});
-
-type ProductosFormValues = z.infer<typeof productosSchema>;
+import { useParams, useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function AgregarProductosPage() {
-  const router = useRouter();
+  const [selectedWarehouse, setSelectedWarehouse] = useState<string>("");
   const params = useParams<{ manufacturerId: string }>();
-  const manufacturerId = params.manufacturerId;
+  const router = useRouter();
+  const { data: warehouses, isLoading } =
+    api.warehouse.getAllWarehouses.useQuery();
 
-  const form = useForm<ProductosFormValues>({
-    resolver: zodResolver(productosSchema),
-    defaultValues: {
-      productos: [
-        {
-          name: "",
-          description: "",
-          amount: "",
-          storageCondition: "",
-          price: "",
-        },
-      ],
-    },
-  });
-
-  const { fields, append } = useFieldArray({
-    control: form.control,
-    name: "productos",
-  });
-
-  const { mutate: addProductsToManufacturer } =
-    api.product.addProductsToManufacturer.useMutation({
-      onSuccess: () => {
-        toast("Registro de producto(s) exitoso");
-        router.push("/");
-      },
-
-      onError: (error) => {
-        toast.error("Error al guardar los productos", {
-          classNames: {
-            toast: "!bg-red-500/90",
-          },
-        });
-      },
-    });
-
-  const onSubmit = async (data: ProductosFormValues) => {
-    const products = data.productos.map((product) => ({
-      name: product.name,
-      description: product.description,
-      amount: Number(product.amount),
-      storageCondition: product.storageCondition,
-      price: Number(product.price),
-      manufacturerId: manufacturerId,
-    }));
-
-    addProductsToManufacturer({
-      products,
-    });
+  const handleWarehouseSelection = (value: string) => {
+    setSelectedWarehouse(value);
   };
 
-  const handleAddProduct = () => {
-    append({
-      name: "",
-      description: "",
-      storageCondition: "",
-      price: "",
-      amount: "",
-    });
+  const handleContinuar = () => {
+    if (selectedWarehouse) {
+      router.push(`/products/${params.manufacturerId}/${selectedWarehouse}`);
+    }
   };
+
+  const handleVolver = () => {
+    router.back();
+  };
+
+  if (isLoading || !warehouses) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div className="mx-auto max-w-md px-4 py-8">
-      <h1 className="mb-8 font-normal text-3xl">Agregar producto(s)</h1>
+    <div className="flex min-h-screen flex-col items-center px-4 py-8">
+      <div className="w-full max-w-md">
+        <h1 className="mb-12 font-normal text-3xl">
+          Seleccione la bodega a la cual quiere agregar uno o varios productos
+        </h1>
 
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          {fields.map((field, index) => (
-            <ProductForm
-              key={field.id}
-              form={form}
-              index={index}
-              isLast={index === fields.length - 1}
-            />
-          ))}
+        <Select onValueChange={handleWarehouseSelection}>
+          <SelectTrigger className="h-14 w-full rounded-full border-gray-300">
+            <SelectValue placeholder="Selecciona un fabricante" />
+          </SelectTrigger>
+          <SelectContent>
+            {warehouses.map((warehouse) => (
+              <SelectItem key={warehouse.id} value={warehouse.id}>
+                {warehouse.address}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
-          <div className="flex justify-center">
-            <Button
-              type="button"
-              onClick={handleAddProduct}
-              variant="primaryCCP"
-              size="defaultIcon"
-            >
-              <Plus className="h-8 w-8" />
-              <span className="sr-only">Agregar producto</span>
+        {selectedWarehouse && (
+          <div className="mt-8 flex justify-center">
+            <Button onClick={handleContinuar} variant="primaryCCP">
+              Continuar
             </Button>
           </div>
+        )}
 
-          <div className="mt-8 flex flex-col items-center justify-center gap-8">
-            <Button type="submit" variant="primaryCCP">
-              Finalizar
-            </Button>
-            <Button
-              type="button"
-              variant="ghostCCP"
-              onClick={() => router.back()}
-            >
-              Volver
-            </Button>
-          </div>
-        </form>
-      </Form>
+        <div className="mt-8 flex justify-center">
+          <Button onClick={handleVolver} variant="primaryCCP">
+            Volver
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

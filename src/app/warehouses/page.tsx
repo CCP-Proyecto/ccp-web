@@ -9,19 +9,11 @@ export default function VentasPage() {
 
   const menuItems = [
     {
-      title: "Registro de vendedores",
-      path: "/salesmans/register",
+      title: "Registro de bodegas",
+      path: "/warehouses/register",
     },
     {
-      title: "Planes de venta",
-      path: "#",
-    },
-    {
-      title: "Reporte de vendedores",
-      path: "#",
-    },
-    {
-      title: "Informe de vendedores",
+      title: "Consulta de bodegas",
       path: "#",
     },
   ];

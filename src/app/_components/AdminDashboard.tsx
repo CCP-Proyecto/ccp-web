@@ -53,19 +53,21 @@ export const AdminDashboard = () => {
 
         {/* Warehouses Card */}
         <Card className="border shadow-sm">
-          <CardContent className="p-0">
-            <div className="flex flex-col items-center p-6">
-              <div className="mb-4 flex w-full justify-center rounded-lg p-8">
-                <Grid3X3 className="h-16 w-16" />
+          <Link href="/warehouses">
+            <CardContent className="p-0">
+              <div className="flex flex-col items-center p-6">
+                <div className="mb-4 flex w-full justify-center rounded-lg p-8">
+                  <Grid3X3 className="h-16 w-16" />
+                </div>
+                <h2 className="mb-2 text-center font-semibold text-sm">
+                  BODEGAS
+                </h2>
+                <p className="text-center text-sm">
+                  Gestione sus bodegas, cantidades en inventario y localización.
+                </p>
               </div>
-              <h2 className="mb-2 text-center font-semibold text-sm">
-                BODEGAS
-              </h2>
-              <p className="text-center text-sm">
-                Gestione sus bodegas, cantidades en inventario y localización.
-              </p>
-            </div>
-          </CardContent>
+            </CardContent>
+          </Link>
         </Card>
 
         {/* Products Card */}
