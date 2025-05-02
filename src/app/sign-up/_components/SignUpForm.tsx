@@ -81,16 +81,17 @@ export const SignUpForm = () => {
     setIsSubmitting(true);
 
     try {
-      const { email, password, name } = data;
+      const { email, password, name, id: userId } = data;
       const { error } = await signUp.email({
         email,
         password,
         name,
+        userId,
         roles: ["admin"],
       });
 
       if (error) {
-        console.log(error.message);
+        throw new Error(error.message);
       }
 
       form.reset();
@@ -99,7 +100,7 @@ export const SignUpForm = () => {
 
       router.push("/login");
     } catch (error) {
-      toast.error("Error al enviar el formulario", {
+      toast.error(`Error al enviar el formulario: ${error}`, {
         classNames: {
           toast: "!bg-red-500/90",
         },
