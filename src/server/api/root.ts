@@ -8,7 +8,7 @@ import { manufacturerRouter, productRouter, salesmanRouter, warehouseRouter } fr
  */
 export const appRouter = createTRPCRouter({
   product: productRouter,
-  manufacurer: manufacturerRouter,
+  manufacturer: manufacturerRouter,
   warehouse: warehouseRouter,
   salesman: salesmanRouter,
 });

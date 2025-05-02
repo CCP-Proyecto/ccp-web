@@ -49,12 +49,12 @@ export default function RegistroFabricantes() {
   const router = useRouter();
 
   const { mutate: createManufacturer, isPending } =
-    api.manufacurer.createManufacturer.useMutation({
+    api.manufacturer.createManufacturer.useMutation({
       onSuccess: () => {
         toast("Registro exitoso");
       },
       onError: (error) => {
-        toast.error("Error al enviar el formulario", {
+        toast.error(`Error al enviar el formulario: ${error}`, {
           classNames: {
             toast: "!bg-red-500/90",
           },

@@ -41,6 +41,7 @@ export const productRouter = createTRPCRouter({
             manufacturerId: z.string(),
           }),
         ),
+        warehouseId: z.number(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
@@ -64,8 +65,46 @@ export const productRouter = createTRPCRouter({
         throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: error });
       }
 
-      const data = await res.json();
+      const productsData: {
+        id: string;
+        name: string;
+        description: string;
+        storageCondition: string;
+        price: number;
+      }[] = await res.json();
 
-      return data;
+      const inventories = productsData.map((product) => {
+        const resProduct = input.products.find((p) => p.name === product.name);
+
+        const quantity = resProduct?.amount || 0;
+        const productId = product.id;
+
+        return {
+          quantity,
+          productId,
+          warehouseId: input.warehouseId,
+        };
+      });
+
+    console.log({ inventories });
+
+      const resInventory = await fetch(`${env.API_MS}/api/inventory`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          inventories,
+        }),
+      });
+
+      if (!resInventory.ok) {
+        const { error } = await resInventory.json();
+        if (resInventory.status === 401) {
+          throw new TRPCError({ code: "UNAUTHORIZED", message: error });
+        }
+        console.log({ error, status: resInventory.status });
+        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: error });
+      }
+
+      return productsData;
     }),
 });

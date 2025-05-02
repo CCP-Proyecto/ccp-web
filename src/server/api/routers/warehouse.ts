@@ -4,6 +4,11 @@ import { env } from "@/env";
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
 import { TRPCError } from "@trpc/server";
 
+type Warehouse = {
+  id: string;
+  address: string;
+};
+
 export const warehouseRouter = createTRPCRouter({
   createWarehouse: protectedProcedure
     .input(
@@ -32,4 +37,24 @@ export const warehouseRouter = createTRPCRouter({
 
       return res.json();
     }),
+  getAllWarehouses: protectedProcedure.query(async ({ ctx }) => {
+    const headers = new Headers();
+    ctx.cookie && headers.set("Cookie", ctx.cookie);
+
+    const res = await fetch(`${env.API_MS}/api/warehouse`, {
+      headers,
+    });
+
+    if (!res.ok) {
+      const { error } = await res.json();
+      if (res.status === 401) {
+        throw new TRPCError({ code: "UNAUTHORIZED", message: error });
+      }
+      throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: error });
+    }
+
+    const data: Warehouse[] = await res.json();
+
+    return data;
+  }),
 });

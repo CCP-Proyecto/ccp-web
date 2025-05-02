@@ -16,7 +16,7 @@ export default function AgregarProductosPage() {
   const [selectedManufacturer, setSelectedManufacturer] = useState<string>("");
   const router = useRouter();
   const { data: manufacturers, isLoading } =
-    api.manufacurer.getAllManufacturers.useQuery();
+    api.manufacturer.getAllManufacturers.useQuery();
 
   const handleManufacturerSelection = (value: string) => {
     setSelectedManufacturer(value);
