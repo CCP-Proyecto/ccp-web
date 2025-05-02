@@ -54,23 +54,24 @@ export default function RegistroVendedores() {
   const onSubmit = async (data: SalesmanRegistrationValues) => {
     setIsSubmitting(true);
     try {
-      const { email, password, name } = data;
+      const { email, password, name, id: userId } = data;
       const { error } = await signUp.email({
         email,
         password,
         name,
+        userId,
         roles: ["salesman"],
       });
 
       if (error) {
-        console.log(error.message);
+        throw new Error(error.message);
       }
 
       toast("Registro exitoso");
 
       form.reset();
     } catch (error) {
-      toast.error("Error al enviar el formulario", {
+      toast.error(`Error al enviar el formulario: ${error}`, {
         classNames: {
           toast: "!bg-red-500/90",
         },
