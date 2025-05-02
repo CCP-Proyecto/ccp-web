@@ -141,6 +141,7 @@ export const LoginForm = () => {
           </form>
         </Form>
       </div>
+      <p className="pt-50 text-sm">Version: 0.2.4</p>
     </div>
   );
 };
