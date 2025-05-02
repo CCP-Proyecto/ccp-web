@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { signUp } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { api } from "@/trpc/react";
 
 const salesmanRegistrationSchema = z.object({
   name: z.string().min(3, "El nombre completo es demasiado corto"),
@@ -37,6 +38,22 @@ type SalesmanRegistrationValues = z.infer<typeof salesmanRegistrationSchema>;
 export default function RegistroVendedores() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const { mutate: createSalesman } = api.salesman.createSalesman.useMutation({
+    onError: (error) => {
+      toast.error(`Error al enviar el formulario: ${error.message}`, {
+        classNames: {
+          toast: "!bg-red-500/90",
+        },
+      });
+    },
+
+    onSuccess: () => {
+      form.reset();
+      router.push("/salesmans");
+      toast("Registro de vendedor exitoso")
+    },
+  });
+
   const form = useForm<SalesmanRegistrationValues>({
     resolver: zodResolver(salesmanRegistrationSchema),
     defaultValues: {
@@ -54,7 +71,7 @@ export default function RegistroVendedores() {
   const onSubmit = async (data: SalesmanRegistrationValues) => {
     setIsSubmitting(true);
     try {
-      const { email, password, name, id: userId } = data;
+      const { email, password, name, id: userId, idType, phone } = data;
       const { error } = await signUp.email({
         email,
         password,
@@ -67,9 +84,13 @@ export default function RegistroVendedores() {
         throw new Error(error.message);
       }
 
-      toast("Registro exitoso");
-
-      form.reset();
+      createSalesman({
+        name,
+        idType,
+        id: userId,
+        phone,
+        email,
+      });
     } catch (error) {
       toast.error(`Error al enviar el formulario: ${error}`, {
         classNames: {
