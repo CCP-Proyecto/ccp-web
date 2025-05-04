@@ -31,8 +31,12 @@ export const manufacturerRouter = createTRPCRouter({
       });
 
       if (!res.ok) {
-        const { error } = await res.json();
+        const json = await res.json();
+        const { error } = json;
         if (res.status === 401) {
+          console.error("***************************************************************");
+          console.error(JSON.stringify(json));
+          console.error("***************************************************************");
           throw new TRPCError({ code: "UNAUTHORIZED", message: error });
         }
         throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: error });
