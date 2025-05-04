@@ -24,10 +24,6 @@ export const manufacturerRouter = createTRPCRouter({
       const headers = new Headers();
       ctx.cookie && headers.set("Cookie", ctx.cookie);
 
-      console.error("***************************************************************");
-      console.error(JSON.stringify(headers));
-      console.error("cookie",JSON.stringify(ctx.cookie));
-      console.error("***************************************************************");
       const res = await fetch(`${env.API_MS}/api/manufacturer`, {
         headers,
         method: "POST",
@@ -38,9 +34,6 @@ export const manufacturerRouter = createTRPCRouter({
         const json = await res.json();
         const { error } = json;
         if (res.status === 401) {
-          console.error("***************************************************************");
-          console.error(JSON.stringify(json));
-          console.error("***************************************************************");
           throw new TRPCError({ code: "UNAUTHORIZED", message: error });
         }
         throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: error });
