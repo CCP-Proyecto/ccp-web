@@ -24,6 +24,10 @@ export const manufacturerRouter = createTRPCRouter({
       const headers = new Headers();
       ctx.cookie && headers.set("Cookie", ctx.cookie);
 
+      console.error("***************************************************************");
+      console.error(JSON.stringify(headers));
+      console.error("cookie",JSON.stringify(ctx.cookie));
+      console.error("***************************************************************");
       const res = await fetch(`${env.API_MS}/api/manufacturer`, {
         headers,
         method: "POST",
