@@ -16,9 +16,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { signUp } from "@/lib/auth-client";
+import { api } from "@/trpc/react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { api } from "@/trpc/react";
 
 const salesmanRegistrationSchema = z.object({
   name: z.string().min(3, "El nombre completo es demasiado corto"),
@@ -50,7 +50,7 @@ export default function RegistroVendedores() {
     onSuccess: () => {
       form.reset();
       router.push("/salesmans");
-      toast("Registro de vendedor exitoso")
+      toast("Registro de vendedor exitoso");
     },
   });
 

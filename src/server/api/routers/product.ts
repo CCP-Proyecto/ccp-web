@@ -5,6 +5,11 @@ import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
+interface Product {
+  id: string;
+  name: string;
+}
+
 export const productRouter = createTRPCRouter({
   getAllProducts: protectedProcedure.query(async ({ ctx }) => {
     const headers = new Headers();
@@ -22,7 +27,7 @@ export const productRouter = createTRPCRouter({
       throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: error });
     }
 
-    const data = await res.json();
+    const data: Product[] = await res.json();
 
     return data;
   }),
@@ -86,8 +91,6 @@ export const productRouter = createTRPCRouter({
         };
       });
 
-    console.log({ inventories });
-
       const resInventory = await fetch(`${env.API_MS}/api/inventory`, {
         method: "POST",
         headers,
@@ -106,5 +109,45 @@ export const productRouter = createTRPCRouter({
       }
 
       return productsData;
+    }),
+  getProductByWarehouse: protectedProcedure
+    .input(
+      z.object({
+        warehouseId: z.number(),
+        productId: z.number(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      const headers = new Headers();
+      ctx.cookie && headers.set("Cookie", ctx.cookie);
+
+      const res = await fetch(
+        `${env.API_MS}/api/inventory/product/${input.productId}/warehouse/${input.warehouseId}`,
+        {
+          headers,
+        },
+      );
+
+      if (!res.ok) {
+        const { error } = await res.json();
+        if (res.status === 401) {
+          throw new TRPCError({ code: "UNAUTHORIZED", message: error });
+        }
+        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: error });
+      }
+
+      const data: {
+        product: {
+          id: number;
+          name: string;
+        };
+        quantity: number;
+        warehouse: {
+          id: number;
+          address: string;
+        };
+      } = await res.json();
+
+      return data;
     }),
 });
