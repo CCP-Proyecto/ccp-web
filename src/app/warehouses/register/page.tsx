@@ -15,9 +15,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { api } from "@/trpc/react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { api } from "@/trpc/react";
 
 const warehouseRegistrationSchema = z.object({
   name: z.string().min(3, "El nombre completo es demasiado corto"),

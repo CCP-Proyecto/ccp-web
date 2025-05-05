@@ -4,7 +4,7 @@ import { SelectionMenu } from "@/components/SelectionMenu";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
-export default function VentasPage() {
+export default function WarehousesPage() {
   const router = useRouter();
 
   const menuItems = [
@@ -13,8 +13,8 @@ export default function VentasPage() {
       path: "/warehouses/register",
     },
     {
-      title: "Consulta de bodegas",
-      path: "#",
+      title: "Consulta de productos en bodega",
+      path: "/warehouses/products",
     },
   ];
 
@@ -28,7 +28,7 @@ export default function VentasPage() {
 
   return (
     <div className="flex min-h-screen flex-col items-center px-4 py-8">
-      <h1 className="mb-16 font-normal text-4xl">Ventas</h1>
+      <h1 className="mb-16 font-normal text-4xl">Bodegas</h1>
 
       <SelectionMenu
         items={menuItems.map((item) => ({
