@@ -58,7 +58,6 @@ export const LoginForm = () => {
     );
 
     if (error) {
-      console.log(error);
       toast.error("Error al iniciar sesión", {
         classNames: {
           toast: "!bg-red-500/90",

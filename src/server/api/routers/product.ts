@@ -66,7 +66,6 @@ export const productRouter = createTRPCRouter({
         if (res.status === 401) {
           throw new TRPCError({ code: "UNAUTHORIZED", message: error });
         }
-        console.log({ error, status: res.status });
         throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: error });
       }
 
@@ -104,7 +103,6 @@ export const productRouter = createTRPCRouter({
         if (resInventory.status === 401) {
           throw new TRPCError({ code: "UNAUTHORIZED", message: error });
         }
-        console.log({ error, status: resInventory.status });
         throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: error });
       }
 
