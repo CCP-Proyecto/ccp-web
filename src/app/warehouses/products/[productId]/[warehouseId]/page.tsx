@@ -3,7 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { api } from "@/trpc/react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function ProductResultsPage() {
   const { productId, warehouseId } = useParams<{
@@ -11,16 +12,34 @@ export default function ProductResultsPage() {
     warehouseId: string;
   }>();
 
-  const { data: product, isLoading } =
-    api.product.getProductByWarehouse.useQuery(
-      {
-        warehouseId: Number(warehouseId),
-        productId: Number(productId),
+  const router = useRouter();
+
+  const {
+    data: product,
+    isLoading,
+    isError,
+    error,
+  } = api.product.getProductByWarehouse.useQuery(
+    {
+      warehouseId: Number(warehouseId),
+      productId: Number(productId),
+    },
+    {
+      enabled: !!productId && !!warehouseId,
+    },
+  );
+
+  if (isError) {
+    if (error.data?.code === "NOT_FOUND") {
+      toast("Product no encontrado en esta bodega");
+      router.back();
+    }
+    toast.error("Algo sucedió, intenta más tarde", {
+      classNames: {
+        toast: "!bg-red-500/90",
       },
-      {
-        enabled: !!productId && !!warehouseId,
-      },
-    );
+    });
+  }
 
   if (isLoading || !product) {
     return <div>Loading...</div>;
