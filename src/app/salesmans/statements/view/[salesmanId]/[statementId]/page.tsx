@@ -37,9 +37,9 @@ export default function StatementResultsPage() {
         </div>
 
         <div className="flex justify-center">
-          <Link href="/salesmans/statements">
+          <Link href="/">
             <Button className="w-min" variant="primaryCCP">
-              Volver al menú de informes
+              Volver al menú principal
             </Button>
           </Link>
         </div>
