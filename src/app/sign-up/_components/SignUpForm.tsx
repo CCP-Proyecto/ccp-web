@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { IDTypeField } from "@/app/_components/IDTypeField";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -17,13 +18,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { signUp } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -183,27 +177,7 @@ export const SignUpForm = () => {
               <FormField
                 control={form.control}
                 name="idType"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Tipo de ID</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger className="rounded-md border-[#333] focus:ring-0">
-                          <SelectValue placeholder="Tipo de identificación" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent className="border-[#333] bg-white">
-                        <SelectItem value="CC">Cédula de Ciudadanía</SelectItem>
-                        <SelectItem value="NIT">NIT</SelectItem>
-                        <SelectItem value="other">Otro</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                render={({ field }) => <IDTypeField field={field} />}
               />
 
               <FormField

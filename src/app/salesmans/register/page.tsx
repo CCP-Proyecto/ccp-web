@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { IDTypeField } from "@/app/_components/IDTypeField";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -135,13 +136,11 @@ export default function RegistroVendedores() {
             control={form.control}
             name="idType"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Tipo de identificación</FormLabel>
-                <FormControl>
-                  <Input {...field} className="h-12 rounded-full" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              <IDTypeField
+                field={field}
+                triggerClassName="rounded-full h-12 border-input"
+                popupClassName="border-input"
+              />
             )}
           />
 

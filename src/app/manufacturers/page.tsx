@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { api } from "@/trpc/react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { IDTypeField } from "../_components/IDTypeField";
 
 const registroFabricanteSchema = z.object({
   name: z.string().min(3, "El nombre de cuenta es demasiado corto"),
@@ -99,13 +100,11 @@ export default function RegistroFabricantes() {
             control={form.control}
             name="idType"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Tipo de cuenta</FormLabel>
-                <FormControl>
-                  <Input {...field} className="h-12 rounded-full" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              <IDTypeField
+                field={field}
+                triggerClassName="rounded-full h-12 border-input"
+                popupClassName="border-input"
+              />
             )}
           />
 
