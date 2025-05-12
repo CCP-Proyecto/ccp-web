@@ -133,6 +133,9 @@ export const productRouter = createTRPCRouter({
         if (res.status === 401) {
           throw new TRPCError({ code: "UNAUTHORIZED", message: error });
         }
+        if (res.status === 404) {
+          throw new TRPCError({ code: "NOT_FOUND", message: error });
+        }
         throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: error });
       }
 
