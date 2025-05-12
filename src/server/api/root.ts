@@ -3,6 +3,7 @@ import {
   manufacturerRouter,
   productRouter,
   salesmanRouter,
+  salesplanRouter,
   warehouseRouter,
 } from "./routers";
 
@@ -16,6 +17,7 @@ export const appRouter = createTRPCRouter({
   manufacturer: manufacturerRouter,
   warehouse: warehouseRouter,
   salesman: salesmanRouter,
+  salesplan: salesplanRouter,
 });
 
 // export type definition of API

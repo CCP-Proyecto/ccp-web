@@ -9,28 +9,22 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { api } from "@/trpc/react";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function SearchProductsPage() {
-  const [selectedStatement, setSelectedStatement] = useState<string>("");
-  const params = useParams<{ salesmanId: string }>();
-
+  const [selectedSalesman, setSelectedSalesman] = useState<string>("");
   const router = useRouter();
-  const { data: statements, isLoading } =
-    api.salesman.getSalesmanStatements.useQuery({
-      salesmanId: params.salesmanId,
-    });
+  const { data: salesmans, isLoading } =
+    api.salesman.getAllSalesmans.useQuery();
 
-  const handleStatementSelection = (value: string) => {
-    setSelectedStatement(value);
+  const handleSalesmanSelection = (value: string) => {
+    setSelectedSalesman(value);
   };
 
   const handleContinuar = () => {
-    if (selectedStatement) {
-      router.push(
-        `/salesmans/statements/view/${params.salesmanId}/${selectedStatement}`,
-      );
+    if (selectedSalesman) {
+      router.push(`/salesmans/salesplans/register/${selectedSalesman}`);
     }
   };
 
@@ -38,7 +32,7 @@ export default function SearchProductsPage() {
     router.back();
   };
 
-  if (isLoading || !statements) {
+  if (isLoading || !salesmans) {
     return <div>Loading...</div>;
   }
 
@@ -46,23 +40,23 @@ export default function SearchProductsPage() {
     <div className="flex min-h-screen flex-col items-center px-4 py-8">
       <div className="w-full max-w-md">
         <h1 className="mb-12 font-normal text-3xl">
-          Seleccione el informe que quiere consultar
+          Seleccione el vendedor al que quiere crear un plan de ventas
         </h1>
 
-        <Select onValueChange={handleStatementSelection}>
+        <Select onValueChange={handleSalesmanSelection}>
           <SelectTrigger className="h-14 w-full rounded-full border-gray-300">
-            <SelectValue placeholder="Selecciona un informe" />
+            <SelectValue placeholder="Selecciona un vendedor" />
           </SelectTrigger>
           <SelectContent>
-            {statements.map((salesman) => (
-              <SelectItem key={salesman.id} value={String(salesman.id)}>
-                {salesman.id}
+            {salesmans.map((salesman) => (
+              <SelectItem key={salesman.id} value={salesman.id}>
+                {salesman.name}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
 
-        {selectedStatement && (
+        {selectedSalesman && (
           <div className="mt-8 flex justify-center">
             <Button onClick={handleContinuar} variant="primaryCCP">
               Continuar

@@ -4,25 +4,18 @@ import { SelectionMenu } from "@/components/SelectionMenu";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
-export default function VentasPage() {
+export default function StatementsMenuPage() {
   const router = useRouter();
 
   const menuItems = [
     {
-      title: "Registro de vendedores",
-      path: "/salesmans/register",
+      title: "Creación de planes de venta",
+      path: "/salesmans/salesplans/register",
     },
     {
-      title: "Planes de venta",
-      path: "/salesmans/salesplans",
-    },
-    {
-      title: "Reporte de vendedores",
+      title: "Ver planes de venta de un vendedor",
+      // path: "/salesmans/salesplans/view",
       path: "#",
-    },
-    {
-      title: "Informe de vendedores",
-      path: "/salesmans/statements",
     },
   ];
 
