@@ -26,13 +26,25 @@ export default function ProductResultsPage() {
     },
     {
       enabled: !!productId && !!warehouseId,
+      retry: (failureCount, error) => {
+        if (error.data?.code === "NOT_FOUND") {
+          toast.error("Producto no encontrado en esta bodega", {
+            classNames: {
+              toast: "!bg-red-500/90",
+            },
+          });
+          router.back();
+          return false;
+        }
+
+        return failureCount < 3;
+      },
     },
   );
 
   if (isError) {
     if (error.data?.code === "NOT_FOUND") {
-      toast("Product no encontrado en esta bodega");
-      router.back();
+      return;
     }
     toast.error("Algo sucedió, intenta más tarde", {
       classNames: {

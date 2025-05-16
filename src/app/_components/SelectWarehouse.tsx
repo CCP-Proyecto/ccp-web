@@ -8,20 +8,23 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { api } from "@/trpc/react";
+import type { Warehouse } from "@/types";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface Props {
   continuePath: string;
   title: string;
+  warehouses: Warehouse[];
 }
 
-export const SelectWarehouse: React.FC<Props> = ({ continuePath, title }) => {
+export const SelectWarehouse: React.FC<Props> = ({
+  continuePath,
+  title,
+  warehouses,
+}) => {
   const [selectedWarehouse, setSelectedWarehouse] = useState<string>("");
   const router = useRouter();
-  const { data: warehouses, isLoading } =
-    api.warehouse.getAllWarehouses.useQuery();
 
   const handleWarehouseSelection = (value: string) => {
     setSelectedWarehouse(value);
@@ -37,7 +40,7 @@ export const SelectWarehouse: React.FC<Props> = ({ continuePath, title }) => {
     router.back();
   };
 
-  if (isLoading || !warehouses) {
+  if (!warehouses) {
     return <div>Loading...</div>;
   }
 
@@ -53,7 +56,7 @@ export const SelectWarehouse: React.FC<Props> = ({ continuePath, title }) => {
           <SelectContent>
             {warehouses.map((warehouse) => (
               <SelectItem key={warehouse.id} value={warehouse.id}>
-                {warehouse.address}
+                {warehouse.name} - {warehouse.address}
               </SelectItem>
             ))}
           </SelectContent>
