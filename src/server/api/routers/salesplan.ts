@@ -14,7 +14,6 @@ export const salesplanRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      console.log({ input });
       const headers = new Headers();
       ctx.cookie && headers.set("Cookie", ctx.cookie);
 
@@ -22,8 +21,6 @@ export const salesplanRouter = createTRPCRouter({
         ...input,
         salespersonId: input.salesmanId,
       };
-
-      console.log({ formData });
 
       const res = await fetch(`${env.API_MS}/api/salesPlan`, {
         headers,

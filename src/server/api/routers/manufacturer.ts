@@ -1,12 +1,8 @@
 import { env } from "@/env";
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
+import type { Manufacturer } from "@/types";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-
-type Manufacturer = {
-  id: string;
-  name: string;
-};
 
 export const manufacturerRouter = createTRPCRouter({
   createManufacturer: protectedProcedure

@@ -1,14 +1,40 @@
-// import { z } from "zod";
-
-import { env } from "@/env";
-import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
-interface Product {
-  id: string;
-  name: string;
-}
+import { env } from "@/env";
+import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
+import type { Inventory, Product, Warehouse } from "@/types";
+
+const createInventories = async ({
+  headers,
+  inventories,
+}: {
+  headers: Headers;
+  inventories: Inventory[];
+}) => {
+  const resInventory = await fetch(`${env.API_MS}/api/inventory`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
+      inventories,
+    }),
+  });
+
+  if (!resInventory.ok) {
+    const res = await resInventory.json();
+    const { error } = res;
+    if (resInventory.status === 401) {
+      throw new TRPCError({ code: "UNAUTHORIZED", message: error });
+    }
+    throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: error });
+  }
+  const data: {
+    id: number;
+    quantity: number;
+  }[] = await resInventory.json();
+
+  return data;
+};
 
 export const productRouter = createTRPCRouter({
   getAllProducts: protectedProcedure.query(async ({ ctx }) => {
@@ -85,26 +111,15 @@ export const productRouter = createTRPCRouter({
 
         return {
           quantity,
-          productId,
+          productId: Number(productId),
           warehouseId: input.warehouseId,
         };
       });
 
-      const resInventory = await fetch(`${env.API_MS}/api/inventory`, {
-        method: "POST",
+      await createInventories({
         headers,
-        body: JSON.stringify({
-          inventories,
-        }),
+        inventories,
       });
-
-      if (!resInventory.ok) {
-        const { error } = await resInventory.json();
-        if (resInventory.status === 401) {
-          throw new TRPCError({ code: "UNAUTHORIZED", message: error });
-        }
-        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: error });
-      }
 
       return productsData;
     }),
@@ -138,17 +153,66 @@ export const productRouter = createTRPCRouter({
       }
 
       const data: {
-        product: {
-          id: number;
-          name: string;
-        };
+        product: Product;
         quantity: number;
-        warehouse: {
-          id: number;
-          address: string;
-        };
+        warehouse: Warehouse;
       } = await res.json();
 
       return data;
+    }),
+  getManufacturerProducts: protectedProcedure
+    .input(
+      z.object({
+        manufacturerId: z.string(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      const headers = new Headers();
+      ctx.cookie && headers.set("Cookie", ctx.cookie);
+
+      const res = await fetch(
+        `${env.API_MS}/api/product/manufacturer/${input.manufacturerId}`,
+        {
+          headers,
+        },
+      );
+
+      if (!res.ok) {
+        const { error } = await res.json();
+        if (res.status === 401) {
+          throw new TRPCError({ code: "UNAUTHORIZED", message: error });
+        }
+        if (res.status === 404) {
+          throw new TRPCError({ code: "NOT_FOUND", message: error });
+        }
+        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: error });
+      }
+
+      const data: Product[] = await res.json();
+
+      return data;
+    }),
+  addProductToWarehouse: protectedProcedure
+    .input(
+      z.object({
+        productId: z.number(),
+        warehouseId: z.number(),
+        amount: z.number(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const headers = new Headers();
+      ctx.cookie && headers.set("Cookie", ctx.cookie);
+
+      const inventory: Inventory = {
+        productId: input.productId,
+        quantity: input.amount,
+        warehouseId: input.warehouseId,
+      };
+
+      return createInventories({
+        headers,
+        inventories: [inventory],
+      });
     }),
 });
