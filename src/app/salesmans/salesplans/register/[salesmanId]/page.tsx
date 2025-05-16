@@ -15,10 +15,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { api } from "@/trpc/react";
-import { useParams, useRouter } from "next/navigation";
-import { toast } from "sonner";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -26,6 +22,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { api } from "@/trpc/react";
+import { useParams, useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const salesplanRegistrationSchema = z.object({
   name: z.string().min(3, "El nombre completo es demasiado corto"),

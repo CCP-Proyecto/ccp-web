@@ -1,4 +1,5 @@
 import { SelectWarehouse } from "@/app/_components/SelectWarehouse";
+import { api } from "@/trpc/server";
 
 export default async function SelectWarehousePage({
   params,
@@ -7,10 +8,15 @@ export default async function SelectWarehousePage({
 }) {
   const { productId } = await params;
 
+  const warehouses = await api.warehouse.getAllWarehousesWithProduct({
+    productId,
+  });
+
   return (
     <SelectWarehouse
       continuePath={`/warehouses/products/${productId}`}
       title="Seleccione la bodega a la cual quiere encontrar la cantidad del producto disponibles"
+      warehouses={warehouses}
     />
   );
 }
