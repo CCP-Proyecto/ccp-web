@@ -12,6 +12,28 @@
       "registerButton": "Regístrate"
     }
   },
+  "SignUpPage": {
+    "title": "Empezar ahora",
+    "subtitle": "Registrarte es muy fácil y rápido",
+    "form": {
+      "name": "Nombre",
+      "namePlaceholder": "Nombre completo",
+      "email": "Email",
+      "emailPlaceholder": "email@ejemplo.com",
+      "password": "Contraseña",
+      "passwordHelp": "Debe tener al menos 8 caracteres",
+      "idType": "Tipo de ID",
+      "idTypePlaceholder": "Tipo de identificación",
+      "idNumber": "Número de identificación",
+      "idNumberPlaceholder": "Número de identificación",
+      "phone": "Teléfono",
+      "phonePlaceholder": "+1 (555) 123-4567",
+      "registerButton": "Regístrate",
+      "registerButtonSubmit": "Creando Cuenta...",
+      "loginPrompt": "Ya tienes una cuenta?",
+      "loginLink": "Iniciar sesión"
+    }
+  },
   "DashboardPage": {
     "title": "Bienvenido al módulo de administrador",
     "manufacturers": {
