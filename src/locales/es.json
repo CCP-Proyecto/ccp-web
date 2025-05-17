@@ -2,6 +2,16 @@
   "Header": {
     "slogan": "COMPRAS FÁCILES, ENVÍOS RÁPIDOS"
   },
+  "LoginPage": {
+    "title": "Bienvenido",
+    "subtitle": "¡Bienvenido al módulo de administrador!",
+    "form": {
+      "email": "Email",
+      "password": "Contraseña",
+      "loginButton": "Iniciar sesión",
+      "registerButton": "Regístrate"
+    }
+  },
   "DashboardPage": {
     "title": "Bienvenido al módulo de administrador",
     "manufacturers": {
