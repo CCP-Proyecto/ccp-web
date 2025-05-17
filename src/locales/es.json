@@ -1,0 +1,54 @@
+{
+  "Header": {
+    "slogan": "COMPRAS FÁCILES, ENVÍOS RÁPIDOS"
+  },
+  "DashboardPage": {
+    "title": "Bienvenido al módulo de administrador",
+    "manufacturers": {
+      "title": "CUENTAS/FABRICANTES",
+      "description": "Gestione sus cuentas, los fabricantes así como el cargue y descargue de productos de forma individual o masiva."
+    },
+    "sales": {
+      "title": "VENTAS",
+      "description": "Gestione los procesos de ventas, planes de ventas, estado de los vendedores así como reportes e informes."
+    },
+    "warehouses": {
+      "title": "BODEGAS",
+      "description": "Gestione sus bodegas, cantidades en inventario y localización."
+    },
+    "products": {
+      "title": "PRODUCTOS",
+      "description": "Gestione sus productos, bodegas, cantidades en inventario y localización."
+    },
+    "routes": {
+      "title": "RUTAS",
+      "description": "Consulte y genere rutas de entrega de los pedidos"
+    }
+  },
+  "ManufacturerRegistrationPage": {
+    "title": "Registro de fabricantes",
+    "subtitle": "Por favor introduzca la siguiente información para el registro del fabricante:",
+    "form": {
+      "accountName": "Nombre cuenta",
+      "idType": "Tipo de ID",
+      "idTypeDropdown": "Tipo de identificación",
+      "CC": "Cédula de ciudadanía",
+      "NIT": "NIT",
+      "other": "Otro",
+      "idNumber": "Número de ID",
+      "phone": "Teléfono",
+      "address": "Dirección",
+      "email": "Correo electrónico"
+    }
+  },
+  "Button": {
+    "register": "Registrar",
+    "back": "Volver",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "add": "Agregar",
+    "view": "Ver"
+  }
+}
