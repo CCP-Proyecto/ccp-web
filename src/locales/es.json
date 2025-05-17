@@ -50,5 +50,11 @@
     "delete": "Eliminar",
     "add": "Agregar",
     "view": "Ver"
+  },
+  "Form": {
+    "registration": {
+      "success": "Registro exitoso",
+      "error": "Error al enviar el formulario"
+    }
   }
 }

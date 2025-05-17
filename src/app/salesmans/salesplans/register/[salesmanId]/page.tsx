@@ -26,6 +26,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { api } from "@/trpc/react";
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 const salesplanRegistrationSchema = z.object({
   name: z.string().min(3, "El nombre completo es demasiado corto"),
@@ -45,17 +46,19 @@ export default function RegistroVendedores() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { salesmanId } = useParams<{ salesmanId: string }>();
 
+  const t = useTranslations("Form");
+
   const { mutate: createSalesplan } = api.salesplan.createSalesplan.useMutation(
     {
       onError: (error) => {
-        toast.error(`Error al enviar el formulario: ${error}`, {
+        toast.error(`${t("registration.error")}: ${error}`, {
           classNames: {
             toast: "!bg-red-500/90",
           },
         });
       },
       onSuccess: () => {
-        toast.success("Registro exitoso");
+        toast.success(t("registration.success"));
         form.reset();
         router.push("/");
       },

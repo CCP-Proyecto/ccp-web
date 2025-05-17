@@ -38,6 +38,7 @@ type CreateManufacturerData = z.infer<typeof registroFabricanteSchema>;
 export default function RegistroFabricantes() {
   const t = useTranslations("ManufacturerRegistrationPage");
   const tb = useTranslations("Button");
+  const tf = useTranslations("Form");
 
   const form = useForm<CreateManufacturerData>({
     resolver: zodResolver(registroFabricanteSchema),
@@ -56,10 +57,10 @@ export default function RegistroFabricantes() {
   const { mutate: createManufacturer, isPending } =
     api.manufacturer.createManufacturer.useMutation({
       onSuccess: () => {
-        toast("Registro exitoso");
+        toast(tf("registration.success"));
       },
       onError: (error) => {
-        toast.error(`Error al enviar el formulario: ${error}`, {
+        toast.error(`${tf("registration.error")}: ${error}`, {
           classNames: {
             toast: "!bg-red-500/90",
           },
@@ -88,7 +89,7 @@ export default function RegistroFabricantes() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t('form.accountName')}</FormLabel>
+                <FormLabel>{t("form.accountName")}</FormLabel>
                 <FormControl>
                   <Input {...field} className="h-12 rounded-full" />
                 </FormControl>
@@ -114,7 +115,7 @@ export default function RegistroFabricantes() {
             name="id"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t('form.idNumber')}</FormLabel>
+                <FormLabel>{t("form.idNumber")}</FormLabel>
                 <FormControl>
                   <Input {...field} className="h-12 rounded-full" />
                 </FormControl>
@@ -128,7 +129,7 @@ export default function RegistroFabricantes() {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t('form.phone')}</FormLabel>
+                <FormLabel>{t("form.phone")}</FormLabel>
                 <FormControl>
                   <Input {...field} className="h-12 rounded-full" />
                 </FormControl>
@@ -142,7 +143,7 @@ export default function RegistroFabricantes() {
             name="address"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t('form.address')}</FormLabel>
+                <FormLabel>{t("form.address")}</FormLabel>
                 <FormControl>
                   <Input {...field} className="h-12 rounded-full" />
                 </FormControl>
@@ -156,7 +157,7 @@ export default function RegistroFabricantes() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t('form.email')}</FormLabel>
+                <FormLabel>{t("form.email")}</FormLabel>
                 <FormControl>
                   <Input
                     type="email"

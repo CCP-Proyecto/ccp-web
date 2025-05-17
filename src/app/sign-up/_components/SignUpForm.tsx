@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { signUp } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 interface SignUpFormType {
   email: string;
@@ -56,6 +57,7 @@ const formSchema = z.object({
 
 export const SignUpForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const t = useTranslations("Form")
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -90,11 +92,11 @@ export const SignUpForm = () => {
 
       form.reset();
 
-      toast("Registro exitoso");
+      toast(t("registration.success"));
 
       router.push("/login");
     } catch (error) {
-      toast.error(`Error al enviar el formulario: ${error}`, {
+      toast.error(`${t("registration.error")}: ${error}`, {
         classNames: {
           toast: "!bg-red-500/90",
         },
