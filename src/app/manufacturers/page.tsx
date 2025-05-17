@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -35,6 +36,9 @@ const registroFabricanteSchema = z.object({
 type CreateManufacturerData = z.infer<typeof registroFabricanteSchema>;
 
 export default function RegistroFabricantes() {
+  const t = useTranslations("ManufacturerRegistrationPage");
+  const tb = useTranslations("Button");
+
   const form = useForm<CreateManufacturerData>({
     resolver: zodResolver(registroFabricanteSchema),
     defaultValues: {
@@ -74,11 +78,8 @@ export default function RegistroFabricantes() {
 
   return (
     <div className="mx-auto max-w-md px-4 py-8">
-      <h1 className="mb-4 font-bold text-3xl">Registro de fabricantes</h1>
-      <p className="mb-8">
-        Por favor introduzca la siguiente información para el registro del
-        fabricante:
-      </p>
+      <h1 className="mb-4 font-bold text-3xl">{t("title")}</h1>
+      <p className="mb-8">{t("subtitle")}</p>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -87,7 +88,7 @@ export default function RegistroFabricantes() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nombre cuenta</FormLabel>
+                <FormLabel>{t('form.accountName')}</FormLabel>
                 <FormControl>
                   <Input {...field} className="h-12 rounded-full" />
                 </FormControl>
@@ -113,7 +114,7 @@ export default function RegistroFabricantes() {
             name="id"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Número de ID</FormLabel>
+                <FormLabel>{t('form.idNumber')}</FormLabel>
                 <FormControl>
                   <Input {...field} className="h-12 rounded-full" />
                 </FormControl>
@@ -127,7 +128,7 @@ export default function RegistroFabricantes() {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Teléfono</FormLabel>
+                <FormLabel>{t('form.phone')}</FormLabel>
                 <FormControl>
                   <Input {...field} className="h-12 rounded-full" />
                 </FormControl>
@@ -141,7 +142,7 @@ export default function RegistroFabricantes() {
             name="address"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Dirección</FormLabel>
+                <FormLabel>{t('form.address')}</FormLabel>
                 <FormControl>
                   <Input {...field} className="h-12 rounded-full" />
                 </FormControl>
@@ -155,7 +156,7 @@ export default function RegistroFabricantes() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Correo electrónico</FormLabel>
+                <FormLabel>{t('form.email')}</FormLabel>
                 <FormControl>
                   <Input
                     type="email"
@@ -169,22 +170,12 @@ export default function RegistroFabricantes() {
           />
 
           <div className="flex flex-col items-center gap-4 pt-4">
-            <Button
-              type="submit"
-              disabled={isPending}
-              // className="h-12 w-40 rounded-full bg-primary-ccp hover:bg-slate-600"
-              variant="primaryCCP"
-            >
-              Registrarse
+            <Button type="submit" disabled={isPending} variant="primaryCCP">
+              {tb("register")}
             </Button>
 
-            <Button
-              type="button"
-              variant="ghostCCP"
-              onClick={handleGoBack}
-              // className="h-12 w-40 rounded-full border-none bg-slate-500 text-white hover:bg-slate-600"
-            >
-              Volver
+            <Button type="button" variant="ghostCCP" onClick={handleGoBack}>
+              {tb("back")}
             </Button>
           </div>
         </form>
