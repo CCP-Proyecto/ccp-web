@@ -1,12 +1,13 @@
 import "@/styles/globals.css";
 
 import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale } from "next-intl/server";
 import { Comfortaa } from "next/font/google";
 
 import { Toaster } from "@/components/ui/sonner";
 import { TRPCReactProvider } from "@/trpc/react";
-import Link from "next/link";
-import { LogoutButton } from "./_components/LogoutButton";
+import { Header } from "./_components/Header";
 
 export const metadata: Metadata = {
   title: "CCP Web",
@@ -20,25 +21,20 @@ const comfortaa = Comfortaa({
   variable: "--font-comfortaa",
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const locale = await getLocale();
   return (
-    <html lang="en" className={`${comfortaa.variable}`}>
+    <html lang={locale} className={`${comfortaa.variable}`}>
       <body className="grid h-screen grid-rows-[auto_1fr]">
-        <header className="sticky top-0 z-10 flex h-20 items-center justify-between bg-secondary-ccp p-4 text-white">
-          <Link href="/">
-            <div className="font-bold text-4xl text-foreground-ccp">CCP</div>
-          </Link>
-          <div className="text-foreground-ccp text-lg">
-            COMPRAS FÁCILES, ENVÍOS RÁPIDOS
-          </div>
-          <LogoutButton />
-        </header>
-        <TRPCReactProvider>
-          {children}
-          <Toaster />
-        </TRPCReactProvider>
+        <NextIntlClientProvider>
+          <Header />
+          <TRPCReactProvider>
+            {children}
+            <Toaster />
+          </TRPCReactProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -1,15 +1,13 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Bookmark, Bus, Grid3X3, LineChart, User } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 
-export const AdminDashboard = () => {
+export const AdminDashboard = async () => {
+  const t = await getTranslations("DashboardPage");
   return (
     <main className="p-6">
-      <h1 className="mb-12 font-bold text-4xl">
-        Bienvenido al módulo de
-        <br />
-        administrador
-      </h1>
+      <h1 className="mb-12 font-bold text-4xl">{t("title")}</h1>
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         <Card className="border shadow-sm">
@@ -20,11 +18,10 @@ export const AdminDashboard = () => {
                   <User className="h-16 w-16" />
                 </div>
                 <h2 className="mb-2 text-center font-semibold text-sm">
-                  CUENTAS/FABRICANTES
+                  {t("manufacturers.title")}
                 </h2>
                 <p className="text-center text-sm">
-                  Gestione sus cuentas, los fabricantes así como el cargue y
-                  descargue de productos de forma individual o masiva.
+                  {t("manufacturers.description")}
                 </p>
               </div>
             </CardContent>
@@ -40,11 +37,10 @@ export const AdminDashboard = () => {
                   <LineChart className="h-16 w-16" />
                 </div>
                 <h2 className="mb-2 text-center font-semibold text-sm">
-                  VENTAS
+                  {t("sales.title")}
                 </h2>
                 <p className="text-center text-sm">
-                  Gestione los procesos de ventas, planes de ventas, estado de
-                  los vendedores así como reportes e informes.
+                  {t("sales.description")}
                 </p>
               </div>
             </CardContent>
@@ -60,10 +56,10 @@ export const AdminDashboard = () => {
                   <Grid3X3 className="h-16 w-16" />
                 </div>
                 <h2 className="mb-2 text-center font-semibold text-sm">
-                  BODEGAS
+                  {t("warehouses.title")}
                 </h2>
                 <p className="text-center text-sm">
-                  Gestione sus bodegas, cantidades en inventario y localización.
+                  {t("warehouses.description")}
                 </p>
               </div>
             </CardContent>
@@ -79,11 +75,10 @@ export const AdminDashboard = () => {
                   <Bookmark className="h-16 w-16" />
                 </div>
                 <h2 className="mb-2 text-center font-semibold text-sm">
-                  PRODUCTOS
+                  {t("products.title")}
                 </h2>
                 <p className="text-center text-sm">
-                  Gestione sus productos, bodegas, cantidades en inventario y
-                  localización.
+                  {t("products.description")}
                 </p>
               </div>
             </CardContent>
@@ -97,9 +92,9 @@ export const AdminDashboard = () => {
               <div className="mb-4 flex w-full justify-center rounded-lg p-8">
                 <Bus className="h-16 w-16" />
               </div>
-              <h2 className="mb-2 text-center font-semibold text-sm">RUTAS</h2>
+              <h2 className="mb-2 text-center font-semibold text-sm">{t("routes.title")}</h2>
               <p className="text-center text-sm">
-                Consulte y genere rutas de entrega de los pedidos
+                {t("routes.description")}
               </p>
             </div>
           </CardContent>

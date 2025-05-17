@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 interface Props {
   triggerClassName?: string;
@@ -24,9 +25,10 @@ export const IDTypeField: React.FC<Props> = ({
   popupClassName,
   triggerClassName,
 }) => {
+  const t = useTranslations("ManufacturerRegistrationPage.form");
   return (
     <FormItem>
-      <FormLabel>Tipo de ID</FormLabel>
+      <FormLabel>{t("idType")}</FormLabel>
       <Select onValueChange={field.onChange} defaultValue={field.value}>
         <FormControl>
           <SelectTrigger
@@ -35,13 +37,13 @@ export const IDTypeField: React.FC<Props> = ({
               triggerClassName,
             )}
           >
-            <SelectValue placeholder="Tipo de identificación" />
+            <SelectValue placeholder={t("idTypeDropdown")} />
           </SelectTrigger>
         </FormControl>
         <SelectContent className={cn("border-[#333] bg-white", popupClassName)}>
-          <SelectItem value="CC">Cédula de Ciudadanía</SelectItem>
-          <SelectItem value="NIT">NIT</SelectItem>
-          <SelectItem value="other">Otro</SelectItem>
+          <SelectItem value="CC">{t('CC')}</SelectItem>
+          <SelectItem value="NIT">{t('NIT')}</SelectItem>
+          <SelectItem value="other">{t('other')}</SelectItem>
         </SelectContent>
       </Select>
       <FormMessage />
