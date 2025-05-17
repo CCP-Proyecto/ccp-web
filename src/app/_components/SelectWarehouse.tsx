@@ -9,6 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import type { Warehouse } from "@/types";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -25,6 +26,7 @@ export const SelectWarehouse: React.FC<Props> = ({
 }) => {
   const [selectedWarehouse, setSelectedWarehouse] = useState<string>("");
   const router = useRouter();
+  const tp = useTranslations("Page");
 
   const handleWarehouseSelection = (value: string) => {
     setSelectedWarehouse(value);
@@ -41,7 +43,7 @@ export const SelectWarehouse: React.FC<Props> = ({
   };
 
   if (!warehouses) {
-    return <div>Loading...</div>;
+    return <div>{tp("loading")}</div>;
   }
 
   return (

@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { api } from "@/trpc/react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
@@ -10,6 +11,7 @@ export default function StatementResultsPage() {
     statementId: string;
     salesmanId: string;
   }>();
+  const tp = useTranslations("Page");
 
   const { data: statement, isLoading } =
     api.salesman.getSalesmanStatementById.useQuery(
@@ -23,7 +25,7 @@ export default function StatementResultsPage() {
     );
 
   if (isLoading || !statement) {
-    return <div>Loading...</div>;
+    return <div>{tp("loading")}</div>;
   }
 
   return (

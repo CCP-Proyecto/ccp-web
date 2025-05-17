@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { api } from "@/trpc/react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -13,6 +14,7 @@ export default function ProductResultsPage() {
   }>();
 
   const router = useRouter();
+  const tp = useTranslations("Page");
 
   const {
     data: product,
@@ -54,7 +56,7 @@ export default function ProductResultsPage() {
   }
 
   if (isLoading || !product) {
-    return <div>Loading...</div>;
+    return <div>{tp("loading")}</div>;
   }
 
   return (

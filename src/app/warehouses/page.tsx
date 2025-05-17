@@ -2,18 +2,21 @@
 
 import { SelectionMenu } from "@/components/SelectionMenu";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 
 export default function WarehousesPage() {
   const router = useRouter();
+  const t = useTranslations("WarehouseHomePage");
+  const tb = useTranslations("Button");
 
   const menuItems = [
     {
-      title: "Registro de bodegas",
+      title: t("options.warehouseRegistration"),
       path: "/warehouses/register",
     },
     {
-      title: "Consulta de productos en bodega",
+      title: t("options.warehouseProductQuery"),
       path: "/warehouses/products",
     },
   ];
@@ -28,7 +31,7 @@ export default function WarehousesPage() {
 
   return (
     <div className="flex min-h-screen flex-col items-center px-4 py-8">
-      <h1 className="mb-16 font-normal text-4xl">Bodegas</h1>
+      <h1 className="mb-16 font-normal text-4xl">{t("title")}</h1>
 
       <SelectionMenu
         items={menuItems.map((item) => ({
@@ -39,7 +42,7 @@ export default function WarehousesPage() {
 
       <div className="pt-16">
         <Button onClick={handleGoBack} variant="primaryCCP">
-          Volver
+          {tb("back")}
         </Button>
       </div>
     </div>

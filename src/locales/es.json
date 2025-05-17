@@ -73,6 +73,13 @@
       "email": "Correo electrónico"
     }
   },
+  "WarehouseHomePage": {
+    "title": "Bodegas",
+    "options": {
+      "warehouseRegistration": "Registro de bodegas",
+      "warehouseProductQuery": "Consulta de productos en bodega"
+    }
+  },
   "Button": {
     "register": "Registrar",
     "back": "Volver",
@@ -82,6 +89,9 @@
     "delete": "Eliminar",
     "add": "Agregar",
     "view": "Ver"
+  },
+  "Page": {
+    "loading": "Cargando..."
   },
   "Form": {
     "registration": {

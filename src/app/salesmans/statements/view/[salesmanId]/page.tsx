@@ -9,6 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { api } from "@/trpc/react";
+import { useTranslations } from "next-intl";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -21,6 +22,7 @@ export default function SearchProductsPage() {
     api.salesman.getSalesmanStatements.useQuery({
       salesmanId: params.salesmanId,
     });
+  const tp = useTranslations("Page");
 
   const handleStatementSelection = (value: string) => {
     setSelectedStatement(value);
@@ -39,7 +41,7 @@ export default function SearchProductsPage() {
   };
 
   if (isLoading || !statements) {
-    return <div>Loading...</div>;
+    return <div>{tp("loading")}</div>;
   }
 
   return (

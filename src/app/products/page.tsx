@@ -9,12 +9,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { api } from "@/trpc/react";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function AgregarProductosPage() {
   const [selectedManufacturer, setSelectedManufacturer] = useState<string>("");
   const router = useRouter();
+  const tp = useTranslations("Page");
   const { data: manufacturers, isLoading } =
     api.manufacturer.getAllManufacturers.useQuery();
 
@@ -33,7 +35,7 @@ export default function AgregarProductosPage() {
   };
 
   if (isLoading || !manufacturers) {
-    return <div>Loading...</div>;
+    return <div>{tp("loading")}</div>;
   }
 
   return (

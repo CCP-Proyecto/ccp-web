@@ -9,6 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { api } from "@/trpc/react";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -17,6 +18,7 @@ export default function SearchProductsPage() {
   const router = useRouter();
   const { data: salesmans, isLoading } =
     api.salesman.getAllSalesmans.useQuery();
+  const tp = useTranslations("Page");
 
   const handleSalesmanSelection = (value: string) => {
     setSelectedSalesman(value);
@@ -33,7 +35,7 @@ export default function SearchProductsPage() {
   };
 
   if (isLoading || !salesmans) {
-    return <div>Loading...</div>;
+    return <div>{tp("loading")}</div>;
   }
 
   return (
