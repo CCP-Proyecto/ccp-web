@@ -134,5 +134,46 @@
       "errorNotFound": "Producto no encontrado en esta bodega"
     },
     "backButton": "Volver al menú de bodegas"
+  },
+  "ProductManufacturerQueryPage": {
+    "title": "Seleccione el fabricante al cual quiere agregar uno o varios productos",
+    "form": {
+      "manufacturerDropdown": "Selecciona un fabricante"
+    }
+  },
+  "ProductWarehouseQueryPage": {
+    "title": "Seleccione la bodega a la cual quiere agregar uno o varios productos"
+  },
+  "ProductMenuPage": {
+    "title": "Productos",
+    "options": {
+      "addNewProducts": "Agregar nuevos productos",
+      "addInventoryToExistingProduct": "Agregar cantidad al inventario de un producto existente"
+    }
+  },
+  "AddProductPage": {
+    "title": "Agregar producto(s)",
+    "form": {
+      "title": "Producto",
+      "name": "Nombre",
+      "description": "Descripción",
+      "quantity": "Cantidad",
+      "storageConditions": "Condiciones de almacenamiento",
+      "unitPrice": "Precio unitario",
+      "addMoreButton": "Agregar producto",
+      "submitButton": "Añadir producto(s) a CCP"
+    },
+    "toast": {
+      "success": "Registro de producto(s) exitoso",
+      "error": "Error al guardar los productos"
+    }
+  },
+  "AddProductAmountPage": {
+    "title": "Agregar producto a bodega",
+    "form": {
+      "productDropdown": "Selecciona un producto",
+      "quantity": "Cantidad",
+      "submitButton": "Agregar producto a bodega"
+    }
   }
 }

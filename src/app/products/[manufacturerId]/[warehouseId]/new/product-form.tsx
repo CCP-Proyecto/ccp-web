@@ -7,21 +7,29 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useTranslations } from "next-intl";
 
 interface ProductFormProps {
   form: any;
   index: number;
   isLast: boolean;
+  multiple?: boolean;
 }
 
-export function ProductForm({ form, index, isLast }: ProductFormProps) {
+export function ProductForm({
+  form,
+  index,
+  isLast,
+  multiple,
+}: ProductFormProps) {
+  const t = useTranslations("AddProductPage.form");
   return (
     <div
       className={`space-y-4 ${!isLast ? "border-gray-200 border-b pb-8" : ""}`}
     >
-      {index > 0 && (
+      {multiple && (
         <div className="mb-4 text-center font-medium text-lg">
-          Producto {index + 1}
+          {t("title")} {index + 1}
         </div>
       )}
 
@@ -34,7 +42,7 @@ export function ProductForm({ form, index, isLast }: ProductFormProps) {
             <FormControl>
               <Input
                 {...field}
-                placeholder="Nombre"
+                placeholder={t("name")}
                 className="h-14 rounded-full px-4"
               />
             </FormControl>
@@ -52,7 +60,7 @@ export function ProductForm({ form, index, isLast }: ProductFormProps) {
             <FormControl>
               <Input
                 {...field}
-                placeholder="Descripción"
+                placeholder={t("description")}
                 className="h-14 rounded-full px-4"
               />
             </FormControl>
@@ -70,6 +78,7 @@ export function ProductForm({ form, index, isLast }: ProductFormProps) {
             <QuantityInput
               onValueChange={field.onChange}
               defaultValue={field.value}
+              label={t("quantity")}
             />
             <FormMessage />
           </FormItem>
@@ -85,7 +94,7 @@ export function ProductForm({ form, index, isLast }: ProductFormProps) {
             <FormControl>
               <Input
                 {...field}
-                placeholder="Condiciones de almacenamiento"
+                placeholder={t("storageConditions")}
                 className="h-14 rounded-full px-4"
               />
             </FormControl>
@@ -103,7 +112,7 @@ export function ProductForm({ form, index, isLast }: ProductFormProps) {
             <FormControl>
               <Input
                 {...field}
-                placeholder="Precio unitario"
+                placeholder={t("unitPrice")}
                 className="h-14 rounded-full px-4"
               />
             </FormControl>

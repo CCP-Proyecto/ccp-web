@@ -10,6 +10,7 @@ import { Form } from "@/components/ui/form";
 import { api } from "@/trpc/react";
 import { toast } from "sonner";
 import { ProductForm } from "./product-form";
+import { useTranslations } from "next-intl";
 
 const productoSchema = z.object({
   name: z.string().min(2, "El nombre es requerido"),
@@ -32,6 +33,11 @@ export default function AgregarProductosPage() {
   const router = useRouter();
   const params = useParams<{ manufacturerId: string; warehouseId: string }>();
   const { manufacturerId, warehouseId } = params;
+
+  const t = useTranslations("AddProductPage");
+  const tt = useTranslations("AddProductPage.toast");
+  const tf = useTranslations("AddProductPage.form");
+  const tb = useTranslations("Button");
 
   const form = useForm<ProductosFormValues>({
     resolver: zodResolver(productosSchema),
@@ -56,12 +62,12 @@ export default function AgregarProductosPage() {
   const { mutate: addProductsToManufacturer } =
     api.product.addProductsToManufacturer.useMutation({
       onSuccess: () => {
-        toast("Registro de producto(s) exitoso");
+        toast(tt("success"));
         router.push("/");
       },
 
       onError: (error) => {
-        toast.error(`Error al guardar los productos ${error}`, {
+        toast.error(`${tt("error")} ${error}`, {
           classNames: {
             toast: "!bg-red-500/90",
           },
@@ -97,7 +103,7 @@ export default function AgregarProductosPage() {
 
   return (
     <div className="mx-auto max-w-md px-4 py-8">
-      <h1 className="mb-8 font-normal text-3xl">Agregar producto(s)</h1>
+      <h1 className="mb-8 font-normal text-3xl">{t("title")}</h1>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -107,6 +113,7 @@ export default function AgregarProductosPage() {
               form={form}
               index={index}
               isLast={index === fields.length - 1}
+              multiple={fields.length > 1}
             />
           ))}
 
@@ -118,20 +125,24 @@ export default function AgregarProductosPage() {
               size="defaultIcon"
             >
               <Plus className="h-8 w-8" />
-              <span className="sr-only">Agregar producto</span>
+              <span className="sr-only">{tf("addMoreButton")}</span>
             </Button>
           </div>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-8">
-            <Button type="submit" variant="primaryCCP">
-              Finalizar
+            <Button
+              className="w-min text-nowrap"
+              type="submit"
+              variant="primaryCCP"
+            >
+              {tf("submitButton")}
             </Button>
             <Button
               type="button"
               variant="ghostCCP"
               onClick={() => router.back()}
             >
-              Volver
+              {tb("back")}
             </Button>
           </div>
         </form>

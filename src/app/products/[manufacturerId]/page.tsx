@@ -1,5 +1,6 @@
 import { SelectWarehouse } from "@/app/_components/SelectWarehouse";
 import { api } from "@/trpc/server";
+import { getTranslations } from "next-intl/server";
 
 export default async function AgregarProductosPage({
   params,
@@ -9,10 +10,12 @@ export default async function AgregarProductosPage({
   const { manufacturerId } = await params;
   const warehouses = await api.warehouse.getAllWarehouses();
 
+  const t = await getTranslations("ProductWarehouseQueryPage");
+
   return (
     <SelectWarehouse
       continuePath={`/products/${manufacturerId}`}
-      title="Seleccione la bodega a la cual quiere agregar uno o varios productos"
+      title={t("title")}
       warehouses={warehouses}
     />
   );

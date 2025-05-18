@@ -2,6 +2,7 @@
 
 import { SelectionMenu } from "@/components/SelectionMenu";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 import { useParams, useRouter } from "next/navigation";
 
 export default function ProductsMenuPage() {
@@ -11,13 +12,16 @@ export default function ProductsMenuPage() {
     warehouseId: string;
   }>();
 
+  const t = useTranslations("ProductMenuPage")
+  const tb = useTranslations("Button")
+
   const menuItems = [
     {
-      title: "Agregar nuevos productos",
+      title: t("options.addNewProducts"),
       path: `/products/${manufacturerId}/${warehouseId}/new`,
     },
     {
-      title: "Agregar cantidad al inventario de un producto existente",
+      title: t("options.addInventoryToExistingProduct"),
       path: `/products/${manufacturerId}/${warehouseId}/add`,
     },
   ];
@@ -32,7 +36,7 @@ export default function ProductsMenuPage() {
 
   return (
     <div className="flex min-h-screen flex-col items-center px-4 py-8">
-      <h1 className="mb-16 font-normal text-4xl">Productos</h1>
+      <h1 className="mb-16 font-normal text-4xl">{t("title")}</h1>
 
       <SelectionMenu
         items={menuItems.map((item) => ({
@@ -43,7 +47,7 @@ export default function ProductsMenuPage() {
 
       <div className="pt-16">
         <Button onClick={handleGoBack} variant="primaryCCP">
-          Volver
+          {tb("back")}
         </Button>
       </div>
     </div>

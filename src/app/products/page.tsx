@@ -16,6 +16,9 @@ import { useState } from "react";
 export default function AgregarProductosPage() {
   const [selectedManufacturer, setSelectedManufacturer] = useState<string>("");
   const router = useRouter();
+  const t = useTranslations("ProductManufacturerQueryPage");
+  const tf = useTranslations("ProductManufacturerQueryPage.form");
+  const tb = useTranslations("Button");
   const tp = useTranslations("Page");
   const { data: manufacturers, isLoading } =
     api.manufacturer.getAllManufacturers.useQuery();
@@ -41,13 +44,11 @@ export default function AgregarProductosPage() {
   return (
     <div className="flex min-h-screen flex-col items-center px-4 py-8">
       <div className="w-full max-w-md">
-        <h1 className="mb-12 font-normal text-3xl">
-          Seleccione el fabricante al cual quiere agregar uno o varios productos
-        </h1>
+        <h1 className="mb-12 font-normal text-3xl">{t("title")}</h1>
 
         <Select onValueChange={handleManufacturerSelection}>
           <SelectTrigger className="h-14 w-full rounded-full border-gray-300">
-            <SelectValue placeholder="Selecciona un fabricante" />
+            <SelectValue placeholder={tf("manufacturerDropdown")} />
           </SelectTrigger>
           <SelectContent>
             {manufacturers.map((manufacturer) => (
@@ -61,14 +62,14 @@ export default function AgregarProductosPage() {
         {selectedManufacturer && (
           <div className="mt-8 flex justify-center">
             <Button onClick={handleContinuar} variant="primaryCCP">
-              Continuar
+              {tb("continue")}
             </Button>
           </div>
         )}
 
         <div className="mt-8 flex justify-center">
           <Button onClick={handleVolver} variant="primaryCCP">
-            Volver
+            {tb("back")}
           </Button>
         </div>
       </div>

@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/select";
 import { api } from "@/trpc/react";
 import type { Product } from "@/types";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -27,6 +28,9 @@ export const SelectProduct: React.FC<SelectProductProps> = ({
   const [selectedProduct, setSelectedProduct] = useState<string>("");
   const [amount, setAmount] = useState("1");
   const router = useRouter();
+  const t = useTranslations("AddProductAmountPage");
+  const tf = useTranslations("AddProductAmountPage.form");
+  const tb = useTranslations("Button");
   const { mutate: addProductToWarehouse } =
     api.product.addProductToWarehouse.useMutation({
       onError: (error) => {
@@ -62,13 +66,13 @@ export const SelectProduct: React.FC<SelectProductProps> = ({
     <div className="flex min-h-screen flex-col items-center px-4 py-8">
       <div className="w-full max-w-md">
         <h1 className="mb-12 font-normal text-3xl">
-          Agregar producto a bodega
+          {t("title")}
         </h1>
 
         <div className="flex flex-col gap-4">
           <Select onValueChange={handleProductSelection}>
             <SelectTrigger className="h-14 w-full rounded-full border-gray-300">
-              <SelectValue placeholder="Selecciona un producto" />
+              <SelectValue placeholder={tf("productDropdown")} />
             </SelectTrigger>
             <SelectContent>
               {products.map((product) => (
@@ -83,6 +87,7 @@ export const SelectProduct: React.FC<SelectProductProps> = ({
             onValueChange={setAmount}
             defaultValue={amount}
             insideForm={false}
+            label={tf("quantity")}
           />
         </div>
 
@@ -93,13 +98,13 @@ export const SelectProduct: React.FC<SelectProductProps> = ({
             disabled={!selectedProduct}
             className="w-min text-nowrap"
           >
-            Agregar producto a bodega
+            {tf("submitButton")}
           </Button>
         </div>
 
         <div className="mt-8 flex justify-center">
           <Button onClick={handleVolver} variant="ghostCCP">
-            Volver
+            {tb("back")}
           </Button>
         </div>
       </div>
