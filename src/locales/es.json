@@ -81,13 +81,14 @@
     }
   },
   "Button": {
-    "register": "Registrar",
+    "add": "Agregar",
     "back": "Volver",
     "cancel": "Cancelar",
-    "save": "Guardar",
-    "edit": "Editar",
+    "continue": "Continuar",
     "delete": "Eliminar",
-    "add": "Agregar",
+    "edit": "Editar",
+    "register": "Registrar",
+    "save": "Guardar",
     "view": "Ver"
   },
   "Page": {
@@ -106,5 +107,32 @@
       "warehouseName": "Nombre de la bodega",
       "address": "Dirección"
     }
+  },
+  "WarehouseQueryProductPage": {
+    "title": "Seleccione el producto el cual quiere encontrar",
+    "form": {
+      "productDropdown": "Selecciona un producto"
+    }
+  },
+  "WarehouseQueryPage": {
+    "title": "Seleccione la bodega a la cual quiere encontrar la cantidad del producto disponibles",
+    "form": {
+      "warehouseDropdown": "Selecciona una bodega"
+    }
+  },
+  "WarehouseQueryResultPage": {
+    "title": "Resultados de la búsqueda",
+    "results": {
+      "productId": "ID producto",
+      "productName": "Nombre producto",
+      "warehouseId": "ID Bodega",
+      "warehouseAddress": "Dirección bodega",
+      "availableQuantity": "Cantidades disponibles"
+    },
+    "toast": {
+      "error": "Algo sucedió, intenta más tarde",
+      "errorNotFound": "Producto no encontrado en esta bodega"
+    },
+    "backButton": "Volver al menú de bodegas"
   }
 }

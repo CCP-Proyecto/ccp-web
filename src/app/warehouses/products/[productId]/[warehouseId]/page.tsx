@@ -15,6 +15,8 @@ export default function ProductResultsPage() {
 
   const router = useRouter();
   const tp = useTranslations("Page");
+  const t = useTranslations("WarehouseQueryResultPage");
+  const tr = useTranslations("WarehouseQueryResultPage.results");
 
   const {
     data: product,
@@ -30,7 +32,7 @@ export default function ProductResultsPage() {
       enabled: !!productId && !!warehouseId,
       retry: (failureCount, error) => {
         if (error.data?.code === "NOT_FOUND") {
-          toast.error("Producto no encontrado en esta bodega", {
+          toast.error(t("toast.errorNotFound"), {
             classNames: {
               toast: "!bg-red-500/90",
             },
@@ -48,7 +50,7 @@ export default function ProductResultsPage() {
     if (error.data?.code === "NOT_FOUND") {
       return;
     }
-    toast.error("Algo sucedió, intenta más tarde", {
+    toast.error(t("toast.error"), {
       classNames: {
         toast: "!bg-red-500/90",
       },
@@ -62,20 +64,30 @@ export default function ProductResultsPage() {
   return (
     <div className="flex min-h-screen flex-col items-center px-4 py-8">
       <div className="flex w-full max-w-md flex-col justify-center gap-12">
-        <h1 className="font-normal text-3xl">Resultados de la búsqueda</h1>
+        <h1 className="font-normal text-3xl">{t("title")}</h1>
 
         <div className="flex flex-col">
-          <p>ID producto: {product.product.id}</p>
-          <p>Nombre producto: {product.product.name}</p>
-          <p>ID Bodega: {product.warehouse.id}</p>
-          <p>Dirección bodega: {product.warehouse.address}</p>
-          <p>Cantidades disponibles: {product.quantity}</p>
+          <p>
+            {tr("productId")}: {product.product.id}
+          </p>
+          <p>
+            {tr("productName")}: {product.product.name}
+          </p>
+          <p>
+            {tr("warehouseId")}: {product.warehouse.id}
+          </p>
+          <p>
+            {tr("warehouseAddress")}: {product.warehouse.address}
+          </p>
+          <p>
+            {tr("availableQuantity")}: {product.quantity}
+          </p>
         </div>
 
         <div className="flex justify-center">
           <Link href="/warehouses">
             <Button className="w-min" variant="primaryCCP">
-              Volver al menú de bodegas
+              {t("backButton")}
             </Button>
           </Link>
         </div>

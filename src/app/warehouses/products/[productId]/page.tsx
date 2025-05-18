@@ -1,5 +1,6 @@
 import { SelectWarehouse } from "@/app/_components/SelectWarehouse";
 import { api } from "@/trpc/server";
+import { getTranslations } from "next-intl/server";
 
 export default async function SelectWarehousePage({
   params,
@@ -12,10 +13,12 @@ export default async function SelectWarehousePage({
     productId,
   });
 
+  const t = await getTranslations("WarehouseQueryPage");
+
   return (
     <SelectWarehouse
       continuePath={`/warehouses/products/${productId}`}
-      title="Seleccione la bodega a la cual quiere encontrar la cantidad del producto disponibles"
+      title={t("title")}
       warehouses={warehouses}
     />
   );
