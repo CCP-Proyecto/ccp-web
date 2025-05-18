@@ -98,5 +98,13 @@
       "success": "Registro exitoso",
       "error": "Error al enviar el formulario"
     }
+  },
+  "WarehouseRegisterPage": {
+    "title": "Registro de bodegas",
+    "subtitle": "Por favor introduzca la siguiente información para el registro de la bodega",
+    "form": {
+      "warehouseName": "Nombre de la bodega",
+      "address": "Dirección"
+    }
   }
 }

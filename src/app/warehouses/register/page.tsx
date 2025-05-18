@@ -29,19 +29,22 @@ type WarehouseRegistrationValues = z.infer<typeof warehouseRegistrationSchema>;
 
 export default function RegistroVendedores() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const t = useTranslations("Form");
+  const t = useTranslations("WarehouseRegisterPage");
+  const tf = useTranslations("WarehouseRegisterPage.form");
+  const tfg = useTranslations("Form");
+  const tfb = useTranslations("Button");
 
   const { mutate: createWarehouse } = api.warehouse.createWarehouse.useMutation(
     {
       onError: (error) => {
-        toast.error(`${t("registration.error")}: ${error}`, {
+        toast.error(`${tfg("registration.error")}: ${error}`, {
           classNames: {
             toast: "!bg-red-500/90",
           },
         });
       },
       onSuccess: () => {
-        toast.success(t("registration.success"));
+        toast.success(tfg("registration.success"));
         form.reset();
         router.push("/");
       },
@@ -71,11 +74,8 @@ export default function RegistroVendedores() {
 
   return (
     <div className="mx-auto max-w-md px-4 py-8">
-      <h1 className="mb-4 font-bold text-3xl">Registro de bodegas</h1>
-      <p className="mb-8">
-        Por favor introduzca la siguiente información para el registro de la
-        bodega:
-      </p>
+      <h1 className="mb-4 font-bold text-3xl">{t("title")}</h1>
+      <p className="mb-8">{t("subtitle")}</p>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -84,7 +84,7 @@ export default function RegistroVendedores() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nombre de la bodega</FormLabel>
+                <FormLabel>{tf("warehouseName")}</FormLabel>
                 <FormControl>
                   <Input {...field} className="h-12 rounded-full" />
                 </FormControl>
@@ -98,7 +98,7 @@ export default function RegistroVendedores() {
             name="address"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Dirección</FormLabel>
+                <FormLabel>{tf("address")}</FormLabel>
                 <FormControl>
                   <Input {...field} className="h-12 rounded-full" />
                 </FormControl>
@@ -109,11 +109,11 @@ export default function RegistroVendedores() {
 
           <div className="flex flex-col items-center gap-4 pt-4">
             <Button type="submit" disabled={isSubmitting} variant="primaryCCP">
-              Registrar bodega
+              {tfb("register")}
             </Button>
 
             <Button type="button" variant="ghostCCP" onClick={handleGoBack}>
-              Volver
+              {tfb("back")}
             </Button>
           </div>
         </form>
