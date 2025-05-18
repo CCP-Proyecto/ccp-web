@@ -2,26 +2,30 @@
 
 import { SelectionMenu } from "@/components/SelectionMenu";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 
 export default function VentasPage() {
   const router = useRouter();
+  const t = useTranslations("SalesMenuPage");
+  const to = useTranslations("SalesMenuPage.options");
+  const tb = useTranslations("Button");
 
   const menuItems = [
     {
-      title: "Registro de vendedores",
+      title: to("salesPersonRegistration"),
       path: "/salesmans/register",
     },
     {
-      title: "Planes de venta",
+      title: to("salesPlans"),
       path: "/salesmans/salesplans",
     },
     {
-      title: "Reporte de vendedores",
+      title: to("salesPersonReport"),
       path: "#",
     },
     {
-      title: "Informe de vendedores",
+      title: to("salesPersonInfo"),
       path: "/salesmans/statements",
     },
   ];
@@ -36,7 +40,7 @@ export default function VentasPage() {
 
   return (
     <div className="flex min-h-screen flex-col items-center px-4 py-8">
-      <h1 className="mb-16 font-normal text-4xl">Ventas</h1>
+      <h1 className="mb-16 font-normal text-4xl">{t("title")}</h1>
 
       <SelectionMenu
         items={menuItems.map((item) => ({
@@ -47,7 +51,7 @@ export default function VentasPage() {
 
       <div className="pt-16">
         <Button onClick={handleGoBack} variant="primaryCCP">
-          Volver
+          {tb("back")}
         </Button>
       </div>
     </div>

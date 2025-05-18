@@ -20,6 +20,7 @@ import { signUp } from "@/lib/auth-client";
 import { api } from "@/trpc/react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 const salesmanRegistrationSchema = z.object({
   name: z.string().min(3, "El nombre completo es demasiado corto"),
@@ -38,6 +39,10 @@ type SalesmanRegistrationValues = z.infer<typeof salesmanRegistrationSchema>;
 
 export default function RegistroVendedores() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const t = useTranslations("SalesmanRegisterPage");
+  const tf = useTranslations("SalesmanRegisterPage.form");
+  const tt = useTranslations("SalesmanRegisterPage.toast");
+  const tb = useTranslations("Button");
 
   const { mutate: createSalesman } = api.salesman.createSalesman.useMutation({
     onError: (error) => {
@@ -51,7 +56,7 @@ export default function RegistroVendedores() {
     onSuccess: () => {
       form.reset();
       router.push("/salesmans");
-      toast("Registro de vendedor exitoso");
+      toast(tt("success"));
     },
   });
 
@@ -93,7 +98,7 @@ export default function RegistroVendedores() {
         email,
       });
     } catch (error) {
-      toast.error(`Error al enviar el formulario: ${error}`, {
+      toast.error(`${tt("error")}: ${error}`, {
         classNames: {
           toast: "!bg-red-500/90",
         },
@@ -110,11 +115,8 @@ export default function RegistroVendedores() {
 
   return (
     <div className="mx-auto max-w-md px-4 py-8">
-      <h1 className="mb-4 font-bold text-3xl">Registro de vendedores</h1>
-      <p className="mb-8">
-        Por favor introduzca la siguiente información para el registro del
-        vendedor:
-      </p>
+      <h1 className="mb-4 font-bold text-3xl">{t("title")}</h1>
+      <p className="mb-8">{t("subtitle")}</p>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -123,7 +125,7 @@ export default function RegistroVendedores() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nombre completo del vendedor</FormLabel>
+                <FormLabel>{tf("fullName")}</FormLabel>
                 <FormControl>
                   <Input {...field} className="h-12 rounded-full" />
                 </FormControl>
@@ -149,7 +151,7 @@ export default function RegistroVendedores() {
             name="id"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Número de ID</FormLabel>
+                <FormLabel>{tf("idNumber")}</FormLabel>
                 <FormControl>
                   <Input {...field} className="h-12 rounded-full" />
                 </FormControl>
@@ -163,7 +165,7 @@ export default function RegistroVendedores() {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Teléfono</FormLabel>
+                <FormLabel>{tf("phone")}</FormLabel>
                 <FormControl>
                   <Input {...field} className="h-12 rounded-full" />
                 </FormControl>
@@ -177,7 +179,7 @@ export default function RegistroVendedores() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Correo electrónico</FormLabel>
+                <FormLabel>{tf("email")}</FormLabel>
                 <FormControl>
                   <Input
                     type="email"
@@ -194,7 +196,7 @@ export default function RegistroVendedores() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Contraseña</FormLabel>
+                <FormLabel>{tf("password")}</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
@@ -209,11 +211,11 @@ export default function RegistroVendedores() {
 
           <div className="flex flex-col items-center gap-4 pt-4">
             <Button type="submit" disabled={isSubmitting} variant="primaryCCP">
-              Registrarse
+              {tb("register")}
             </Button>
 
             <Button type="button" variant="ghostCCP" onClick={handleGoBack}>
-              Volver
+              {tb("back")}
             </Button>
           </div>
         </form>
