@@ -26,7 +26,7 @@ export default function WarehousesPage() {
   };
 
   const handleGoBack = () => {
-    router.back();
+    router.push("/");
   };
 
   return (
