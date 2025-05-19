@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { signUp } from "@/lib/auth-client";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
@@ -56,6 +57,9 @@ const formSchema = z.object({
 
 export const SignUpForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const tfg = useTranslations("Form");
+  const t = useTranslations("SignUpPage");
+  const tf = useTranslations("SignUpPage.form");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -90,11 +94,11 @@ export const SignUpForm = () => {
 
       form.reset();
 
-      toast("Registro exitoso");
+      toast(tfg("registration.success"));
 
       router.push("/login");
     } catch (error) {
-      toast.error(`Error al enviar el formulario: ${error}`, {
+      toast.error(`${tfg("registration.error")}: ${error}`, {
         classNames: {
           toast: "!bg-red-500/90",
         },
@@ -108,8 +112,8 @@ export const SignUpForm = () => {
     <div className="flex min-h-screen items-center justify-center p-4">
       <div className="w-full max-w-lg space-y-6 rounded-lg p-8">
         <div className="space-y-2">
-          <h1 className="font-bold text-3xl">Empezar ahora</h1>
-          <p className="text-gray-400">Registrarte es muy fácil y rápido</p>
+          <h1 className="font-bold text-3xl">{t("title")}</h1>
+          <p className="text-gray-400">{t("subtitle")}</p>
         </div>
 
         <Form {...form}>
@@ -119,10 +123,10 @@ export const SignUpForm = () => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nombre</FormLabel>
+                  <FormLabel>{tf("name")}</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Nombre completo"
+                      placeholder={tf("namePlaceholder")}
                       {...field}
                       className="h-12 rounded-md border-[#333] placeholder:text-gray-500 focus:border-gray-500 focus:ring-0"
                     />
@@ -137,10 +141,10 @@ export const SignUpForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>{tf("email")}</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="email@ejemplo.com"
+                      placeholder={tf("emailPlaceholder")}
                       type="email"
                       {...field}
                       className="h-12 rounded-md border-[#333] placeholder:text-gray-500 focus:border-gray-500 focus:ring-0"
@@ -156,7 +160,7 @@ export const SignUpForm = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Contraseña</FormLabel>
+                  <FormLabel>{tf("password")}</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="••••••••"
@@ -166,7 +170,7 @@ export const SignUpForm = () => {
                     />
                   </FormControl>
                   <FormDescription className="text-gray-500 text-sm">
-                    Debe tener al menos 8 caracteres
+                    {tf("passwordHelp")}
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -185,10 +189,10 @@ export const SignUpForm = () => {
                 name="id"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Número de identificación</FormLabel>
+                    <FormLabel>{tf("idNumber")}</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Número de identificación"
+                        placeholder={tf("idNumberPlaceholder")}
                         {...field}
                         className="h-12 rounded-md border-[#333] placeholder:text-gray-500 focus:border-gray-500 focus:ring-0"
                       />
@@ -204,10 +208,10 @@ export const SignUpForm = () => {
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Teléfono</FormLabel>
+                  <FormLabel>{tf("phone")}</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="+1 (555) 123-4567"
+                      placeholder={tf("phonePlaceholder")}
                       {...field}
                       className="h-12 rounded-md border-[#333] placeholder:text-gray-500 focus:border-gray-500 focus:ring-0"
                     />
@@ -222,16 +226,16 @@ export const SignUpForm = () => {
               disabled={isSubmitting}
               className="h-12 w-full rounded-md bg-gray-200 font-medium text-black hover:bg-gray-300"
             >
-              {isSubmitting ? "Creando Cuenta..." : "Regístrate"}
+              {isSubmitting ? tf("registerButtonSubmit") : tf("registerButton")}
             </Button>
           </form>
         </Form>
 
         <div className="border-[#333] border-t pt-4 text-center">
           <p className="text-gray-400">
-            Ya tienes una cuenta?{" "}
+            {tf("loginPrompt")}{" "}
             <Link href="/login" className="text-cyan-700 hover:underline">
-              Iniciar sesión
+              {tf("loginLink")}
             </Link>
           </p>
         </div>

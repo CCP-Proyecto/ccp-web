@@ -9,6 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import type { Warehouse } from "@/types";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -25,6 +26,9 @@ export const SelectWarehouse: React.FC<Props> = ({
 }) => {
   const [selectedWarehouse, setSelectedWarehouse] = useState<string>("");
   const router = useRouter();
+  const tp = useTranslations("Page");
+  const tf = useTranslations("WarehouseQueryPage.form");
+  const tb = useTranslations("Button");
 
   const handleWarehouseSelection = (value: string) => {
     setSelectedWarehouse(value);
@@ -41,7 +45,7 @@ export const SelectWarehouse: React.FC<Props> = ({
   };
 
   if (!warehouses) {
-    return <div>Loading...</div>;
+    return <div>{tp("loading")}</div>;
   }
 
   return (
@@ -51,7 +55,7 @@ export const SelectWarehouse: React.FC<Props> = ({
 
         <Select onValueChange={handleWarehouseSelection}>
           <SelectTrigger className="h-14 w-full rounded-full border-gray-300">
-            <SelectValue placeholder="Selecciona una bodega" />
+            <SelectValue placeholder={tf("warehouseDropdown")} />
           </SelectTrigger>
           <SelectContent>
             {warehouses.map((warehouse) => (
@@ -65,14 +69,14 @@ export const SelectWarehouse: React.FC<Props> = ({
         {selectedWarehouse && (
           <div className="mt-8 flex justify-center">
             <Button onClick={handleContinuar} variant="primaryCCP">
-              Continuar
+              {tb("continue")}
             </Button>
           </div>
         )}
 
         <div className="mt-8 flex justify-center">
           <Button onClick={handleVolver} variant="primaryCCP">
-            Volver
+            {tb("back")}
           </Button>
         </div>
       </div>

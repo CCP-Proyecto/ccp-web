@@ -11,12 +11,14 @@ interface Props {
   onValueChange: (value: string) => void;
   defaultValue: string;
   insideForm?: boolean;
+  label: string;
 }
 
 export const QuantityInput: React.FC<Props> = ({
   defaultValue,
   onValueChange,
   insideForm = true,
+  label,
 }) => {
   // Generate quantity options from 0 to 100
   const quantityOptions = Array.from({ length: 100 }, (_, i) =>
@@ -30,7 +32,7 @@ export const QuantityInput: React.FC<Props> = ({
       <FormControlWrapper className="bg-transparent!">
         <SelectTrigger className="h-14 w-full rounded-full px-4 py-6">
           <div className="flex w-full items-center justify-between">
-            <span className="text-muted-foreground">Cantidad</span>
+            <span className="text-muted-foreground">{label}</span>
             <div className="flex justify-between">
               <SelectValue placeholder="0" />
             </div>

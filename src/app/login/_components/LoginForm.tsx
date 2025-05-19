@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { signIn } from "@/lib/auth-client";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 const loginSchema = z.object({
@@ -29,6 +30,8 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 export const LoginForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
+
+  const t = useTranslations("LoginPage");
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -80,8 +83,8 @@ export const LoginForm = () => {
     <div className="flex min-h-screen flex-col items-center justify-center px-4 py-8">
       <div className="w-full max-w-md space-y-8">
         <div className="text-center">
-          <h1 className="font-normal text-4xl">Bienvenido</h1>
-          <p className="mt-2">¡Bienvenido al módulo de administrador!</p>
+          <h1 className="font-normal text-4xl">{t("title")}</h1>
+          <p className="mt-2">{t("subtitle")}</p>
         </div>
 
         <Form {...form}>
@@ -94,7 +97,7 @@ export const LoginForm = () => {
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder="Usuario"
+                      placeholder={t("form.email")}
                       className="h-14 rounded-sm"
                     />
                   </FormControl>
@@ -112,7 +115,7 @@ export const LoginForm = () => {
                     <Input
                       {...field}
                       type="password"
-                      placeholder="Contraseña"
+                      placeholder={t("form.password")}
                       className="h-14 rounded-sm"
                     />
                   </FormControl>
@@ -127,20 +130,20 @@ export const LoginForm = () => {
                 disabled={isSubmitting}
                 className="h-12 w-40 rounded-full bg-primary-ccp text-white shadow-md hover:bg-slate-600"
               >
-                Iniciar sesión
+                {t("form.loginButton")}
               </Button>
 
               <Link
                 href="/sign-up"
                 className="text-secondary-ccp transition-colors hover:text-slate-800"
               >
-                Regístrate
+                {t("form.registerButton")}
               </Link>
             </div>
           </form>
         </Form>
       </div>
-      <p className="pt-50 text-sm">Version: 0.2.4</p>
+      <p className="pt-50 text-sm">Version: 0.3.5</p>
     </div>
   );
 };

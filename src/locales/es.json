@@ -1,0 +1,262 @@
+{
+  "Header": {
+    "slogan": "COMPRAS FÁCILES, ENVÍOS RÁPIDOS"
+  },
+  "LoginPage": {
+    "title": "Bienvenido",
+    "subtitle": "¡Bienvenido al módulo de administrador!",
+    "form": {
+      "email": "Email",
+      "password": "Contraseña",
+      "loginButton": "Iniciar sesión",
+      "registerButton": "Regístrate"
+    }
+  },
+  "SignUpPage": {
+    "title": "Empezar ahora",
+    "subtitle": "Registrarte es muy fácil y rápido",
+    "form": {
+      "name": "Nombre",
+      "namePlaceholder": "Nombre completo",
+      "email": "Email",
+      "emailPlaceholder": "email@ejemplo.com",
+      "password": "Contraseña",
+      "passwordHelp": "Debe tener al menos 8 caracteres",
+      "idType": "Tipo de ID",
+      "idTypePlaceholder": "Tipo de identificación",
+      "idNumber": "Número de identificación",
+      "idNumberPlaceholder": "Número de identificación",
+      "phone": "Teléfono",
+      "phonePlaceholder": "+1 (555) 123-4567",
+      "registerButton": "Regístrate",
+      "registerButtonSubmit": "Creando Cuenta...",
+      "loginPrompt": "Ya tienes una cuenta?",
+      "loginLink": "Iniciar sesión"
+    }
+  },
+  "DashboardPage": {
+    "title": "Bienvenido al módulo de administrador",
+    "manufacturers": {
+      "title": "CUENTAS/FABRICANTES",
+      "description": "Gestione sus cuentas, los fabricantes así como el cargue y descargue de productos de forma individual o masiva."
+    },
+    "sales": {
+      "title": "VENTAS",
+      "description": "Gestione los procesos de ventas, planes de ventas, estado de los vendedores así como reportes e informes."
+    },
+    "warehouses": {
+      "title": "BODEGAS",
+      "description": "Gestione sus bodegas, cantidades en inventario y localización."
+    },
+    "products": {
+      "title": "PRODUCTOS",
+      "description": "Gestione sus productos, bodegas, cantidades en inventario y localización."
+    },
+    "routes": {
+      "title": "RUTAS",
+      "description": "Consulte y genere rutas de entrega de los pedidos"
+    }
+  },
+  "ManufacturerRegistrationPage": {
+    "title": "Registro de fabricantes",
+    "subtitle": "Por favor introduzca la siguiente información para el registro del fabricante:",
+    "form": {
+      "accountName": "Nombre cuenta",
+      "idType": "Tipo de ID",
+      "idTypeDropdown": "Tipo de identificación",
+      "CC": "Cédula de ciudadanía",
+      "NIT": "NIT",
+      "other": "Otro",
+      "idNumber": "Número de ID",
+      "phone": "Teléfono",
+      "address": "Dirección",
+      "email": "Correo electrónico"
+    }
+  },
+  "WarehouseHomePage": {
+    "title": "Bodegas",
+    "options": {
+      "warehouseRegistration": "Registro de bodegas",
+      "warehouseProductQuery": "Consulta de productos en bodega"
+    }
+  },
+  "Button": {
+    "add": "Agregar",
+    "back": "Volver",
+    "cancel": "Cancelar",
+    "continue": "Continuar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "register": "Registrar",
+    "save": "Guardar",
+    "view": "Ver"
+  },
+  "Page": {
+    "loading": "Cargando..."
+  },
+  "Form": {
+    "registration": {
+      "success": "Registro exitoso",
+      "error": "Error al enviar el formulario"
+    }
+  },
+  "WarehouseRegisterPage": {
+    "title": "Registro de bodegas",
+    "subtitle": "Por favor introduzca la siguiente información para el registro de la bodega",
+    "form": {
+      "warehouseName": "Nombre de la bodega",
+      "address": "Dirección"
+    }
+  },
+  "WarehouseQueryProductPage": {
+    "title": "Seleccione el producto el cual quiere encontrar",
+    "form": {
+      "productDropdown": "Selecciona un producto"
+    }
+  },
+  "WarehouseQueryPage": {
+    "title": "Seleccione la bodega a la cual quiere encontrar la cantidad del producto disponibles",
+    "form": {
+      "warehouseDropdown": "Selecciona una bodega"
+    }
+  },
+  "WarehouseQueryResultPage": {
+    "title": "Resultados de la búsqueda",
+    "results": {
+      "productId": "ID producto",
+      "productName": "Nombre producto",
+      "warehouseId": "ID Bodega",
+      "warehouseAddress": "Dirección bodega",
+      "availableQuantity": "Cantidades disponibles"
+    },
+    "toast": {
+      "error": "Algo sucedió, intenta más tarde",
+      "errorNotFound": "Producto no encontrado en esta bodega"
+    },
+    "backButton": "Volver al menú de bodegas"
+  },
+  "ProductManufacturerQueryPage": {
+    "title": "Seleccione el fabricante al cual quiere agregar uno o varios productos",
+    "form": {
+      "manufacturerDropdown": "Selecciona un fabricante"
+    }
+  },
+  "ProductWarehouseQueryPage": {
+    "title": "Seleccione la bodega a la cual quiere agregar uno o varios productos"
+  },
+  "ProductMenuPage": {
+    "title": "Productos",
+    "options": {
+      "addNewProducts": "Agregar nuevos productos",
+      "addInventoryToExistingProduct": "Agregar cantidad al inventario de un producto existente"
+    }
+  },
+  "AddProductPage": {
+    "title": "Agregar producto(s)",
+    "form": {
+      "title": "Producto",
+      "name": "Nombre",
+      "description": "Descripción",
+      "quantity": "Cantidad",
+      "storageConditions": "Condiciones de almacenamiento",
+      "unitPrice": "Precio unitario",
+      "addMoreButton": "Agregar producto",
+      "submitButton": "Añadir producto(s) a CCP"
+    },
+    "toast": {
+      "success": "Registro de producto(s) exitoso",
+      "error": "Error al guardar los productos"
+    }
+  },
+  "AddProductAmountPage": {
+    "title": "Agregar producto a bodega",
+    "form": {
+      "productDropdown": "Selecciona un producto",
+      "quantity": "Cantidad",
+      "submitButton": "Agregar producto a bodega"
+    }
+  },
+  "SalesMenuPage": {
+    "title": "Ventas",
+    "options": {
+      "salesPersonRegistration": "Registro de vendedores",
+      "salesPlans": "Planes de venta",
+      "salesPersonReport": "Reporte de vendedores",
+      "salesPersonInfo": "Informe de vendedores"
+    }
+  },
+  "SalesmanRegisterPage": {
+    "title": "Registro de vendedores",
+    "subtitle": "Por favor introduzca la siguiente información para el registro del vendedor:",
+    "form": {
+      "fullName": "Nombre completo del vendedor",
+      "idType": "Tipo de ID",
+      "idTypeDropdown": "Tipo de identificación",
+      "idNumber": "Número de ID",
+      "phone": "Teléfono",
+      "email": "Correo electrónico",
+      "password": "Contraseña"
+    },
+    "toast": {
+      "success": "Registro de vendedor exitoso",
+      "error": "Error al enviar el formulario"
+    }
+  },
+  "SalesmanSalesPlanMenuPage": {
+    "title": "Ventas",
+    "options": {
+      "createSalesPlan": "Creación de planes de venta",
+      "viewSalesmanPlans": "Ver planes de venta de un vendedor"
+    }
+  },
+  "SalesmanSalesPlanSelectPage": {
+    "title": "Seleccione el vendedor al que quiere crear un plan de ventas",
+    "form": {
+      "salesmanDropdown": "Selecciona un vendedor"
+    }
+  },
+  "SalesPlanRegisterPage": {
+    "title": "Creación de plan de ventas",
+    "subtitle": "Por favor introduzca la siguiente información para la creación del plan de ventas",
+    "form": {
+      "name": "Nombre",
+      "description": "Descripción",
+      "descriptionPlaceholder": "Descripción",
+      "periodType": "Periodo de tiempo",
+      "periodDropdown": "Periodo",
+      "periodOptions": {
+        "monthly": "Mensual",
+        "quarterly": "Trimestral",
+        "yearly": "Anual"
+      },
+      "createButton": "Crear plan de ventas"
+    }
+  },
+  "SalesmanStatementMenuPage": {
+    "title": "Ventas",
+    "options": {
+      "registerStatements": "Registro de informes",
+      "viewSalesmanStatements": "Ver informes de un vendedor"
+    }
+  },
+  "SalesmanStatementQueryPage": {
+    "title": "Seleccione el vendedor que quiere consultar",
+    "form": {
+      "salesmanDropdown": "Selecciona un vendedor"
+    }
+  },
+  "SalesmanStatementQueryStatementPage": {
+    "title": "Seleccione el informe que quiere consultar",
+    "form": {
+      "statementDropdown": "Selecciona un informe"
+    }
+  },
+  "SalesmanStatementResultPage": {
+    "title": "Resultados de la búsqueda",
+    "details": {
+      "statementId": "ID Informe",
+      "description": "Descripción"
+    },
+    "backButton": "Volver al menú principal"
+  }
+}

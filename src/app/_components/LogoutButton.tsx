@@ -10,7 +10,11 @@ export const LogoutButton = () => {
   const router = useRouter();
 
   if (!session) {
-    return <div className="size-8" />;
+    return (
+      <Button variant="ghost" size="defaultIcon">
+        <LogOutIcon className="size-8 text-foreground-ccp" />
+      </Button>
+    );
   }
 
   return (

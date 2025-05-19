@@ -1,0 +1,262 @@
+{
+  "Header": {
+    "slogan": "EASY SHOPPING, FAST SHIPPING"
+  },
+  "LoginPage": {
+    "title": "Welcome",
+    "subtitle": "Welcome to the admin module!",
+    "form": {
+      "email": "Email",
+      "password": "Password",
+      "loginButton": "Login",
+      "registerButton": "Register"
+    }
+  },
+  "SignUpPage": {
+    "title": "Start now",
+    "subtitle": "Registering is very easy and fast",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Full name",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "password": "Password",
+      "passwordHelp": "Must have at least 8 characters",
+      "idType": "ID Type",
+      "idTypePlaceholder": "Identification type",
+      "idNumber": "Identification number",
+      "idNumberPlaceholder": "Identification number",
+      "phone": "Phone",
+      "phonePlaceholder": "+1 (555) 123-4567",
+      "registerButton": "Register",
+      "registerButtonSubmit": "Creating Account...",
+      "loginPrompt": "Already have an account?",
+      "loginLink": "Login"
+    }
+  },
+  "DashboardPage": {
+    "title": "Welcome to the admin module",
+    "manufacturers": {
+      "title": "ACCOUNTS/MANUFACTURERS",
+      "description": "Manage your accounts, manufacturers as well as the upload and download of products individually or in bulk."
+    },
+    "sales": {
+      "title": "SALES",
+      "description": "Manage sales processes, sales plans, salesperson status as well as reports and statements."
+    },
+    "warehouses": {
+      "title": "WAREHOUSES",
+      "description": "Manage your warehouses, inventory quantities and location."
+    },
+    "products": {
+      "title": "PRODUCTS",
+      "description": "Manage your products, warehouses, inventory quantities and location."
+    },
+    "routes": {
+      "title": "ROUTES",
+      "description": "Consult and generate delivery routes for orders"
+    }
+  },
+  "ManufacturerRegistrationPage": {
+    "title": "Manufacturer registration",
+    "subtitle": "Please enter the following information for the manufacturer registration:",
+    "form": {
+      "accountName": "Account name",
+      "idType": "ID Type",
+      "idTypeDropdown": "Identification type",
+      "CC": "Citizenship ID",
+      "NIT": "NIT",
+      "other": "Other",
+      "idNumber": "ID Number",
+      "phone": "Phone",
+      "address": "Address",
+      "email": "Email"
+    }
+  },
+  "WarehouseHomePage": {
+    "title": "Warehouses",
+    "options": {
+      "warehouseRegistration": "Warehouse registration",
+      "warehouseProductQuery": "Warehouse product query"
+    }
+  },
+  "Button": {
+    "add": "Add",
+    "back": "Back",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "delete": "Delete",
+    "edit": "Edit",
+    "register": "Register",
+    "save": "Save",
+    "view": "View"
+  },
+  "Page": {
+    "loading": "Loading..."
+  },
+  "Form": {
+    "registration": {
+      "success": "Successful registration",
+      "error": "Error submitting the form"
+    }
+  },
+  "WarehouseRegisterPage": {
+    "title": "Warehouse registration",
+    "subtitle": "Please enter the following information for the warehouse registration",
+    "form": {
+      "warehouseName": "Warehouse name",
+      "address": "Address"
+    }
+  },
+  "WarehouseQueryProductPage": {
+    "title": "Select the product you want to find",
+    "form": {
+      "productDropdown": "Select a product"
+    }
+  },
+  "WarehouseQueryPage": {
+    "title": "Select the warehouse where you want to find the available product quantity",
+    "form": {
+      "warehouseDropdown": "Select a warehouse"
+    }
+  },
+  "WarehouseQueryResultPage": {
+    "title": "Search results",
+    "results": {
+      "productId": "Product ID",
+      "productName": "Product name",
+      "warehouseId": "Warehouse ID",
+      "warehouseAddress": "Warehouse address",
+      "availableQuantity": "Available quantities"
+    },
+    "toast": {
+      "error": "Something happened, try again later",
+      "errorNotFound": "Product not found in this warehouse"
+    },
+    "backButton": "Back to warehouse menu"
+  },
+  "ProductManufacturerQueryPage": {
+    "title": "Select the manufacturer to which you want to add one or more products",
+    "form": {
+      "manufacturerDropdown": "Select a manufacturer"
+    }
+  },
+  "ProductWarehouseQueryPage": {
+    "title": "Select the warehouse to which you want to add one or more products"
+  },
+  "ProductMenuPage": {
+    "title": "Products",
+    "options": {
+      "addNewProducts": "Add new products",
+      "addInventoryToExistingProduct": "Add quantity to existing product inventory"
+    }
+  },
+  "AddProductPage": {
+    "title": "Add product(s)",
+    "form": {
+      "title": "Product",
+      "name": "Name",
+      "description": "Description",
+      "quantity": "Quantity",
+      "storageConditions": "Storage conditions",
+      "unitPrice": "Unit price",
+      "addMoreButton": "Add product",
+      "submitButton": "Add product(s) to CCP"
+    },
+    "toast": {
+      "success": "Product(s) registration successful",
+      "error": "Error saving products"
+    }
+  },
+  "AddProductAmountPage": {
+    "title": "Add product to warehouse",
+    "form": {
+      "productDropdown": "Select a product",
+      "quantity": "Quantity",
+      "submitButton": "Add product to warehouse"
+    }
+  },
+  "SalesMenuPage": {
+    "title": "Sales",
+    "options": {
+      "salesPersonRegistration": "Salesperson registration",
+      "salesPlans": "Sales plans",
+      "salesPersonReport": "Salesperson report",
+      "salesPersonInfo": "Salesperson information"
+    }
+  },
+  "SalesmanRegisterPage": {
+    "title": "Salesperson registration",
+    "subtitle": "Please enter the following information for the salesperson registration:",
+    "form": {
+      "fullName": "Salesperson full name",
+      "idType": "ID Type",
+      "idTypeDropdown": "Identification type",
+      "idNumber": "ID Number",
+      "phone": "Phone",
+      "email": "Email",
+      "password": "Password"
+    },
+    "toast": {
+      "success": "Successful salesperson registration",
+      "error": "Error submitting the form"
+    }
+  },
+  "SalesmanSalesPlanMenuPage": {
+    "title": "Sales",
+    "options": {
+      "createSalesPlan": "Create sales plans",
+      "viewSalesmanPlans": "View salesperson plans"
+    }
+  },
+  "SalesmanSalesPlanSelectPage": {
+    "title": "Select the salesperson for whom you want to create a sales plan",
+    "form": {
+      "salesmanDropdown": "Select a salesperson"
+    }
+  },
+  "SalesPlanRegisterPage": {
+    "title": "Sales plan creation",
+    "subtitle": "Please enter the following information for the sales plan creation",
+    "form": {
+      "name": "Name",
+      "description": "Description",
+      "descriptionPlaceholder": "Description",
+      "periodType": "Time period",
+      "periodDropdown": "Period",
+      "periodOptions": {
+        "monthly": "Monthly",
+        "quarterly": "Quarterly",
+        "yearly": "Yearly"
+      },
+      "createButton": "Create sales plan"
+    }
+  },
+  "SalesmanStatementMenuPage": {
+    "title": "Sales",
+    "options": {
+      "registerStatements": "Register statements",
+      "viewSalesmanStatements": "View salesperson statements"
+    }
+  },
+  "SalesmanStatementQueryPage": {
+    "title": "Select the salesperson you want to query",
+    "form": {
+      "salesmanDropdown": "Select a salesperson"
+    }
+  },
+  "SalesmanStatementQueryStatementPage": {
+    "title": "Select the statement you want to query",
+    "form": {
+      "statementDropdown": "Select a statement"
+    }
+  },
+  "SalesmanStatementResultPage": {
+    "title": "Search results",
+    "details": {
+      "statementId": "Statement ID",
+      "description": "Description"
+    },
+    "backButton": "Back to main menu"
+  }
+}

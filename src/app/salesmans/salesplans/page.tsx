@@ -2,18 +2,22 @@
 
 import { SelectionMenu } from "@/components/SelectionMenu";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 
 export default function StatementsMenuPage() {
   const router = useRouter();
+  const t = useTranslations("SalesmanSalesPlanMenuPage");
+  const to = useTranslations("SalesmanSalesPlanMenuPage.options");
+  const tb = useTranslations("Button");
 
   const menuItems = [
     {
-      title: "Creación de planes de venta",
+      title: to("createSalesPlan"),
       path: "/salesmans/salesplans/register",
     },
     {
-      title: "Ver planes de venta de un vendedor",
+      title: to("viewSalesmanPlans"),
       // path: "/salesmans/salesplans/view",
       path: "#",
     },
@@ -29,7 +33,7 @@ export default function StatementsMenuPage() {
 
   return (
     <div className="flex min-h-screen flex-col items-center px-4 py-8">
-      <h1 className="mb-16 font-normal text-4xl">Ventas</h1>
+      <h1 className="mb-16 font-normal text-4xl">{t("title")}</h1>
 
       <SelectionMenu
         items={menuItems.map((item) => ({
@@ -40,7 +44,7 @@ export default function StatementsMenuPage() {
 
       <div className="pt-16">
         <Button onClick={handleGoBack} variant="primaryCCP">
-          Volver
+          {tb("back")}
         </Button>
       </div>
     </div>
