@@ -258,5 +258,44 @@
       "description": "Descripción"
     },
     "backButton": "Volver al menú principal"
+  },
+  "SalesmanReportSelectPage": {
+    "title": "Seleccione el vendedor al que quiere consultar un reporte de ventas",
+    "form": {
+      "salesmanDropdown": "Selecciona un vendedor"
+    }
+  },
+  "SalesmanReportSelectPeriodPage": {
+    "title": "Seleccione el periodo de tiempo que quiere consultar",
+    "form": {
+      "periodDropdown": "Selecciona un periodo",
+      "periodOptions": {
+        "monthly": "Mensual",
+        "quarterly": "Trimestral",
+        "yearly": "Anual"
+      }
+    }
+  },
+  "SalesmanReportSelectDatePage": {
+    "title": "Seleccione la fecha a partir de la cual quiere consultar",
+    "form": {
+      "datePicker": "Selecciona una fecha"
+    }
+  },
+  "SalesmanReportResultPage": {
+    "title": "Salesman Report",
+    "report": {
+      "reportPeriod": "Periodo del reporte",
+      "reportPeriodType": "{type, select, annually {Anual} quarterly {Trimestral} monthly {Mensual} other {Error}}",
+      "reportStartDate": "Fecha inicial del reporte",
+      "salesmanName": "Nombre del Vendedor",
+      "totalOrders": "Total de órdenes",
+      "totalSold": "Total vendido",
+      "soldProducts": "Productos vendidos",
+      "productTableHeaders": {
+        "product": "Producto",
+        "quantityTotal": "Cantidad Total"
+      }
+    }
   }
 }

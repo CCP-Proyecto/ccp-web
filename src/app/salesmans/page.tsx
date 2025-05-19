@@ -22,7 +22,7 @@ export default function VentasPage() {
     },
     {
       title: to("salesPersonReport"),
-      path: "#",
+      path: "/salesmans/reports",
     },
     {
       title: to("salesPersonInfo"),
