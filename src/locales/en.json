@@ -258,5 +258,44 @@
       "description": "Description"
     },
     "backButton": "Back to main menu"
+  },
+  "SalesmanReportSelectPage": {
+    "title": "Select the salesman for whom you want to check a sales report",
+    "form": {
+      "salesmanDropdown": "Select a salesman"
+    }
+  },
+  "SalesmanReportSelectPeriodPage": {
+    "title": "Select the time period you want to check",
+    "form": {
+      "periodDropdown": "Select a period",
+      "periodOptions": {
+        "monthly": "Monthly",
+        "quarterly": "Quarterly",
+        "yearly": "Yearly"
+      }
+    }
+  },
+  "SalesmanReportSelectDatePage": {
+    "title": "Select the date from which you want to check",
+    "form": {
+      "datePicker": "Select a date"
+    }
+  },
+  "SalesmanReportResultPage": {
+    "title": "Salesman Report",
+    "report": {
+      "reportPeriod": "Report period",
+      "reportPeriodType": "{type, select, annually {Annual} quarterly {Quarterly} monthly {Monthly} other {Error}}",
+      "reportStartDate": "Report start date",
+      "salesmanName": "Salesman Name",
+      "totalOrders": "Total orders",
+      "totalSold": "Total sold",
+      "soldProducts": "Products sold",
+      "productTableHeaders": {
+        "product": "Product",
+        "quantityTotal": "Total Quantity"
+      }
+    }
   }
 }

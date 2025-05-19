@@ -1,14 +1,13 @@
 import { getTranslations } from "next-intl/server";
-import { cookies } from "next/headers";
 import Link from "next/link";
 
 import { LocaleSelector } from "./LocaleSelector";
 import { LogoutButton } from "./LogoutButton";
+import { getCurrentLocale } from "@/lib/get-locale";
 
 export const Header = async () => {
+  const locale = await getCurrentLocale();
   const t = await getTranslations("Header");
-  const cookieStore = await cookies();
-  const locale = cookieStore.get("NEXT_LOCALE")?.value || "es";
 
   return (
     <header className="sticky top-0 z-10 flex h-20 items-center justify-between bg-secondary-ccp p-4 text-white">
