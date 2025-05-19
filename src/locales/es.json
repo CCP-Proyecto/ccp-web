@@ -283,7 +283,7 @@
     }
   },
   "SalesmanReportResultPage": {
-    "title": "Salesman Report",
+    "title": "Reporte del vendedor",
     "report": {
       "reportPeriod": "Periodo del reporte",
       "reportPeriodType": "{type, select, annually {Anual} quarterly {Trimestral} monthly {Mensual} other {Error}}",
