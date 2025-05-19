@@ -22,7 +22,10 @@ export default function SearchProductsPage() {
     api.salesman.getSalesmanStatements.useQuery({
       salesmanId: params.salesmanId,
     });
+  const t = useTranslations("SalesmanStatementQueryStatementPage");
+  const tf = useTranslations("SalesmanStatementQueryStatementPage.form");
   const tp = useTranslations("Page");
+  const tb = useTranslations("Button");
 
   const handleStatementSelection = (value: string) => {
     setSelectedStatement(value);
@@ -47,13 +50,11 @@ export default function SearchProductsPage() {
   return (
     <div className="flex min-h-screen flex-col items-center px-4 py-8">
       <div className="w-full max-w-md">
-        <h1 className="mb-12 font-normal text-3xl">
-          Seleccione el informe que quiere consultar
-        </h1>
+        <h1 className="mb-12 font-normal text-3xl">{t("title")}</h1>
 
         <Select onValueChange={handleStatementSelection}>
           <SelectTrigger className="h-14 w-full rounded-full border-gray-300">
-            <SelectValue placeholder="Selecciona un informe" />
+            <SelectValue placeholder={tf("statementDropdown")} />
           </SelectTrigger>
           <SelectContent>
             {statements.map((salesman) => (
@@ -67,14 +68,14 @@ export default function SearchProductsPage() {
         {selectedStatement && (
           <div className="mt-8 flex justify-center">
             <Button onClick={handleContinuar} variant="primaryCCP">
-              Continuar
+              {tb("continue")}
             </Button>
           </div>
         )}
 
         <div className="mt-8 flex justify-center">
           <Button onClick={handleVolver} variant="primaryCCP">
-            Volver
+            {tb("back")}
           </Button>
         </div>
       </div>

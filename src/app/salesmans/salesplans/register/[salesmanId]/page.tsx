@@ -46,19 +46,22 @@ export default function RegistroVendedores() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { salesmanId } = useParams<{ salesmanId: string }>();
 
-  const t = useTranslations("Form");
+  const t = useTranslations("SalesPlanRegisterPage");
+  const tf = useTranslations("SalesPlanRegisterPage.form");
+  const tb = useTranslations("Button");
+  const tt = useTranslations("Form");
 
   const { mutate: createSalesplan } = api.salesplan.createSalesplan.useMutation(
     {
       onError: (error) => {
-        toast.error(`${t("registration.error")}: ${error}`, {
+        toast.error(`${tt("registration.error")}: ${error}`, {
           classNames: {
             toast: "!bg-red-500/90",
           },
         });
       },
       onSuccess: () => {
-        toast.success(t("registration.success"));
+        toast.success(tt("registration.success"));
         form.reset();
         router.push("/");
       },
@@ -88,11 +91,8 @@ export default function RegistroVendedores() {
 
   return (
     <div className="mx-auto max-w-md px-4 py-8">
-      <h1 className="mb-4 font-bold text-3xl">Creación de plan de ventas</h1>
-      <p className="mb-8">
-        Por favor introduzca la siguiente información para la creación del plan
-        de ventas
-      </p>
+      <h1 className="mb-4 font-bold text-3xl">{t("title")}</h1>
+      <p className="mb-8">{t("subtitle")}</p>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -101,7 +101,7 @@ export default function RegistroVendedores() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nombre</FormLabel>
+                <FormLabel>{tf("name")}</FormLabel>
                 <FormControl>
                   <Input {...field} className="h-12 rounded-full" />
                 </FormControl>
@@ -115,10 +115,10 @@ export default function RegistroVendedores() {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Descripción</FormLabel>
+                <FormLabel>{tf("description")}</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Descripción"
+                    placeholder={tf("descriptionPlaceholder")}
                     className="resize-none rounded-xl bg-white"
                     {...field}
                   />
@@ -133,20 +133,26 @@ export default function RegistroVendedores() {
             name="period"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Tipo de ID</FormLabel>
+                <FormLabel>{tf("periodType")}</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
                   <FormControl>
                     <SelectTrigger className="w-full rounded-md border-input focus:ring-0">
-                      <SelectValue placeholder="Periodo" />
+                      <SelectValue placeholder={tf("periodDropdown")} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent className="border-input bg-white">
-                    <SelectItem value="monthly">Mensual</SelectItem>
-                    <SelectItem value="quarterly">Trimestral</SelectItem>
-                    <SelectItem value="yearly">Anual</SelectItem>
+                    <SelectItem value="monthly">
+                      {tf("periodOptions.monthly")}
+                    </SelectItem>
+                    <SelectItem value="quarterly">
+                      {tf("periodOptions.quarterly")}
+                    </SelectItem>
+                    <SelectItem value="yearly">
+                      {tf("periodOptions.yearly")}
+                    </SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -156,12 +162,17 @@ export default function RegistroVendedores() {
           {/* </FormField> */}
 
           <div className="flex flex-col items-center gap-4 pt-4">
-            <Button type="submit" disabled={isSubmitting} variant="primaryCCP">
-              Crear plan de ventas
+            <Button
+              className="w-min text-nowrap"
+              type="submit"
+              disabled={isSubmitting}
+              variant="primaryCCP"
+            >
+              {tf("createButton")}
             </Button>
 
             <Button type="button" variant="ghostCCP" onClick={handleGoBack}>
-              Volver
+              {tb("back")}
             </Button>
           </div>
         </form>

@@ -201,5 +201,62 @@
       "success": "Registro de vendedor exitoso",
       "error": "Error al enviar el formulario"
     }
+  },
+  "SalesmanSalesPlanMenuPage": {
+    "title": "Ventas",
+    "options": {
+      "createSalesPlan": "Creación de planes de venta",
+      "viewSalesmanPlans": "Ver planes de venta de un vendedor"
+    }
+  },
+  "SalesmanSalesPlanSelectPage": {
+    "title": "Seleccione el vendedor al que quiere crear un plan de ventas",
+    "form": {
+      "salesmanDropdown": "Selecciona un vendedor"
+    }
+  },
+  "SalesPlanRegisterPage": {
+    "title": "Creación de plan de ventas",
+    "subtitle": "Por favor introduzca la siguiente información para la creación del plan de ventas",
+    "form": {
+      "name": "Nombre",
+      "description": "Descripción",
+      "descriptionPlaceholder": "Descripción",
+      "periodType": "Periodo de tiempo",
+      "periodDropdown": "Periodo",
+      "periodOptions": {
+        "monthly": "Mensual",
+        "quarterly": "Trimestral",
+        "yearly": "Anual"
+      },
+      "createButton": "Crear plan de ventas"
+    }
+  },
+  "SalesmanStatementMenuPage": {
+    "title": "Ventas",
+    "options": {
+      "registerStatements": "Registro de informes",
+      "viewSalesmanStatements": "Ver informes de un vendedor"
+    }
+  },
+  "SalesmanStatementQueryPage": {
+    "title": "Seleccione el vendedor que quiere consultar",
+    "form": {
+      "salesmanDropdown": "Selecciona un vendedor"
+    }
+  },
+  "SalesmanStatementQueryStatementPage": {
+    "title": "Seleccione el informe que quiere consultar",
+    "form": {
+      "statementDropdown": "Selecciona un informe"
+    }
+  },
+  "SalesmanStatementResultPage": {
+    "title": "Resultados de la búsqueda",
+    "details": {
+      "statementId": "ID Informe",
+      "description": "Descripción"
+    },
+    "backButton": "Volver al menú principal"
   }
 }
