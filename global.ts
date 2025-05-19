@@ -1,4 +1,4 @@
-import messages from "./src/locales/es.json";
+import type messages from "./src/locales/es.json";
 
 const locales = ["en", "es"] as const;
 

@@ -39,9 +39,7 @@ export const AdminDashboard = async () => {
                 <h2 className="mb-2 text-center font-semibold text-sm">
                   {t("sales.title")}
                 </h2>
-                <p className="text-center text-sm">
-                  {t("sales.description")}
-                </p>
+                <p className="text-center text-sm">{t("sales.description")}</p>
               </div>
             </CardContent>
           </Link>
@@ -92,10 +90,10 @@ export const AdminDashboard = async () => {
               <div className="mb-4 flex w-full justify-center rounded-lg p-8">
                 <Bus className="h-16 w-16" />
               </div>
-              <h2 className="mb-2 text-center font-semibold text-sm">{t("routes.title")}</h2>
-              <p className="text-center text-sm">
-                {t("routes.description")}
-              </p>
+              <h2 className="mb-2 text-center font-semibold text-sm">
+                {t("routes.title")}
+              </h2>
+              <p className="text-center text-sm">{t("routes.description")}</p>
             </div>
           </CardContent>
         </Card>

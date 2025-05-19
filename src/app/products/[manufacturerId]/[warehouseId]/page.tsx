@@ -12,8 +12,8 @@ export default function ProductsMenuPage() {
     warehouseId: string;
   }>();
 
-  const t = useTranslations("ProductMenuPage")
-  const tb = useTranslations("Button")
+  const t = useTranslations("ProductMenuPage");
+  const tb = useTranslations("Button");
 
   const menuItems = [
     {

@@ -24,9 +24,9 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { api } from "@/trpc/react";
+import { useTranslations } from "next-intl";
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { useTranslations } from "next-intl";
 
 const salesplanRegistrationSchema = z.object({
   name: z.string().min(3, "El nombre completo es demasiado corto"),

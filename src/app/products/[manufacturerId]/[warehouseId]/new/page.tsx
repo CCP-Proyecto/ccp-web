@@ -8,9 +8,9 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { api } from "@/trpc/react";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { ProductForm } from "./product-form";
-import { useTranslations } from "next-intl";
 
 const productoSchema = z.object({
   name: z.string().min(2, "El nombre es requerido"),

@@ -18,8 +18,8 @@ export default function SearchProductsPage() {
   const router = useRouter();
   const { data: salesmans, isLoading } =
     api.salesman.getAllSalesmans.useQuery();
-  const t = useTranslations("SalesmanStatementQueryPage")
-  const tf = useTranslations("SalesmanStatementQueryPage.form")
+  const t = useTranslations("SalesmanStatementQueryPage");
+  const tf = useTranslations("SalesmanStatementQueryPage.form");
   const tp = useTranslations("Page");
   const tb = useTranslations("Button");
 

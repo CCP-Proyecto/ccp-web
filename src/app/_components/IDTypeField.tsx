@@ -41,9 +41,9 @@ export const IDTypeField: React.FC<Props> = ({
           </SelectTrigger>
         </FormControl>
         <SelectContent className={cn("border-[#333] bg-white", popupClassName)}>
-          <SelectItem value="CC">{t('CC')}</SelectItem>
-          <SelectItem value="NIT">{t('NIT')}</SelectItem>
-          <SelectItem value="other">{t('other')}</SelectItem>
+          <SelectItem value="CC">{t("CC")}</SelectItem>
+          <SelectItem value="NIT">{t("NIT")}</SelectItem>
+          <SelectItem value="other">{t("other")}</SelectItem>
         </SelectContent>
       </Select>
       <FormMessage />

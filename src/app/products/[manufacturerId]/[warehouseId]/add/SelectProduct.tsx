@@ -65,9 +65,7 @@ export const SelectProduct: React.FC<SelectProductProps> = ({
   return (
     <div className="flex min-h-screen flex-col items-center px-4 py-8">
       <div className="w-full max-w-md">
-        <h1 className="mb-12 font-normal text-3xl">
-          {t("title")}
-        </h1>
+        <h1 className="mb-12 font-normal text-3xl">{t("title")}</h1>
 
         <div className="flex flex-col gap-4">
           <Select onValueChange={handleProductSelection}>
