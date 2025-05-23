@@ -36,6 +36,7 @@ export interface Customer {
   id: number;
   idType: string;
   name: string;
+  address: string;
   salespersonId: string;
 }
 
