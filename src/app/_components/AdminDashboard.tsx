@@ -85,17 +85,19 @@ export const AdminDashboard = async () => {
 
         {/* Routes Card */}
         <Card className="border shadow-sm">
-          <CardContent className="p-0">
-            <div className="flex flex-col items-center p-6">
-              <div className="mb-4 flex w-full justify-center rounded-lg p-8">
-                <Bus className="h-16 w-16" />
+          <Link href="/routes">
+            <CardContent className="p-0">
+              <div className="flex flex-col items-center p-6">
+                <div className="mb-4 flex w-full justify-center rounded-lg p-8">
+                  <Bus className="h-16 w-16" />
+                </div>
+                <h2 className="mb-2 text-center font-semibold text-sm">
+                  {t("routes.title")}
+                </h2>
+                <p className="text-center text-sm">{t("routes.description")}</p>
               </div>
-              <h2 className="mb-2 text-center font-semibold text-sm">
-                {t("routes.title")}
-              </h2>
-              <p className="text-center text-sm">{t("routes.description")}</p>
-            </div>
-          </CardContent>
+            </CardContent>
+          </Link>
         </Card>
       </div>
     </main>
