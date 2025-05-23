@@ -71,3 +71,9 @@ export interface Report {
   orders: Order[];
   summary: ReportSummary;
 }
+
+export interface Waypoint {
+  id: string;
+  location: string;
+  stopover: boolean;
+}

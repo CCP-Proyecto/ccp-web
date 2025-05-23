@@ -12,6 +12,7 @@ export const env = createEnv({
     BETTER_AUTH_SECRET: type("string"),
     BETTER_AUTH_URL: type("string"),
     DATABASE_URL: type("string"),
+    GOOGLE_MAPS_API_KEY: type("string"),
   },
 
   /**
