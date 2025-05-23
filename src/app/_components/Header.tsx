@@ -1,9 +1,9 @@
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 
+import { getCurrentLocale } from "@/lib/get-locale";
 import { LocaleSelector } from "./LocaleSelector";
 import { LogoutButton } from "./LogoutButton";
-import { getCurrentLocale } from "@/lib/get-locale";
 
 export const Header = async () => {
   const locale = await getCurrentLocale();

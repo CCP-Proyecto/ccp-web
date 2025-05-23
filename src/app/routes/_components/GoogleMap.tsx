@@ -3,9 +3,9 @@
 import {
   APIProvider,
   Map as RGMap,
-  useMapsLibrary,
-  useMap,
   useApiIsLoaded,
+  useMap,
+  useMapsLibrary,
 } from "@vis.gl/react-google-maps";
 import { useEffect, useState } from "react";
 
