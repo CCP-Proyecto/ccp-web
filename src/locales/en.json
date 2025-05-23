@@ -297,5 +297,23 @@
         "quantityTotal": "Total Quantity"
       }
     }
+  },
+  "RoutesPage": {
+    "title": "Delivery Routes Generation",
+    "subtitle": "Select the source warehouse",
+    "form": {
+      "warehouseDropdown": "Select a warehouse",
+      "ordersSelectionLabel": "Select the orders you want to include in the delivery route",
+      "status": {
+        "pending": "Pending"
+      },
+      "generateRouteButton": "Generate Optimal Route"
+    },
+    "loading": "Loading map...",
+    "calculation": {
+      "totalDistance": "Total Distance of the route",
+      "totalDuration": "Total Duration of the route"
+    },
+    "optimizedRoute": "Optimized delivery route"
   }
 }

@@ -1,5 +1,3 @@
-import { useTranslations } from "next-intl";
-import type { Warehouse } from "@/types";
 import {
   Select,
   SelectContent,
@@ -7,6 +5,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import type { Warehouse } from "@/types";
+import { useTranslations } from "next-intl";
 
 interface Props {
   warehouses?: Warehouse[];

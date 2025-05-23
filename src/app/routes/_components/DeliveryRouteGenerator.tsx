@@ -2,21 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { api } from "@/trpc/react";
+import type { Order } from "@/types";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { GoogleMap } from "./GoogleMap";
-import { api } from "@/trpc/react";
 import { SelectWarehouseAddress } from "./SelectWarehouseAddress";
-import type { Order } from "@/types";
-
-interface DeliveryOrder {
-  id: string;
-  customerName: string;
-  address: string;
-  date: string;
-  status: "Pendiente";
-  selected: boolean;
-}
 
 interface Props {
   apiKey: string;
@@ -27,13 +19,15 @@ interface OrderWithSelected extends Order {
 }
 
 export const DeliveryRouteGenerator: React.FC<Props> = ({ apiKey }) => {
-  const { data: pendingOrders, isFetched } =
-    api.order.getAllPendingOrders.useQuery();
+  const { data: pendingOrders } = api.order.getAllPendingOrders.useQuery();
   const [orders, setOrders] = useState<OrderWithSelected[]>([]);
   const selectedOrders = orders.filter((order) => order.selected);
   const [isRouteGenerated, setIsRouteGenerated] = useState(false);
   const [selectedWarehouse, setSelectedWarehouse] = useState<string>("");
   const { data: warehouses } = api.warehouse.getAllWarehouses.useQuery();
+
+  const t = useTranslations("RoutesPage");
+  const tf = useTranslations("RoutesPage.form");
 
   useEffect(() => {
     if (!pendingOrders) return;
@@ -80,18 +74,14 @@ export const DeliveryRouteGenerator: React.FC<Props> = ({ apiKey }) => {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <h1 className="mb-2 text-center font-bold text-4xl">
-        Generación de Rutas de Entrega
-      </h1>
-      <p className="mb-8 text-center text-xl">Selecciona la bodega de origen</p>
+      <h1 className="mb-2 text-center font-bold text-4xl">{t("title")}</h1>
+      <p className="mb-8 text-center text-xl">{t("subtitle")}</p>
 
       <SelectWarehouseAddress
         warehouses={warehouses}
         setSelectedWarehouse={setSelectedWarehouse}
       />
-      <p className="my-8 text-center text-xl">
-        Selecciona los pedidos que deseas incluir en la ruta de entrega
-      </p>
+      <p className="my-8 text-center text-xl">{tf("ordersSelectionLabel")}</p>
 
       <div className="mb-8 space-y-4">
         {pendingOrders?.map((order, index) => (
@@ -114,7 +104,7 @@ export const DeliveryRouteGenerator: React.FC<Props> = ({ apiKey }) => {
                 </div>
                 <div className="mt-2 flex items-center justify-between md:mt-0">
                   <span className="rounded-full bg-gray-200 px-4 py-1 text-sm capitalize">
-                    {order.status}
+                    {tf("status.pending")}
                   </span>
                 </div>
               </div>
@@ -129,7 +119,7 @@ export const DeliveryRouteGenerator: React.FC<Props> = ({ apiKey }) => {
           className="w-min text-nowrap"
           disabled={selectedOrders.length === 0 || !selectedWarehouse}
         >
-          Generar Ruta Óptima
+          {t("form.generateRouteButton")}
         </Button>
       </div>
     </div>

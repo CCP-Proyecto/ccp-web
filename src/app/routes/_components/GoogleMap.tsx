@@ -7,6 +7,7 @@ import {
   useMap,
   useMapsLibrary,
 } from "@vis.gl/react-google-maps";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -25,18 +26,23 @@ export const GoogleMap: React.FC<GoogleMapsProps> = ({
   origin,
   apiKey,
 }) => {
+  const t = useTranslations("RoutesPage");
   return (
     <APIProvider apiKey={apiKey}>
-      <ReactGoogleMap waypoints={waypoints} origin={origin} />
+      <div className="flex h-full flex-col items-center justify-center gap-8">
+        <h1 className="font-bold text-3xl">{t("optimizedRoute")}</h1>
+        <ReactGoogleMap waypoints={waypoints} origin={origin} />
+      </div>
     </APIProvider>
   );
 };
 
 const ReactGoogleMap: React.FC<Props> = ({ waypoints, origin }) => {
   const status = useApiIsLoaded();
+  const t = useTranslations("RoutesPage");
 
   if (!status) {
-    return <div>Loading map...</div>;
+    return <div>{t("loading")}</div>;
   }
 
   return (
@@ -69,6 +75,7 @@ const Directions: React.FC<Props> = ({ waypoints, origin }) => {
     hours: 0,
     minutes: 0,
   });
+  const t = useTranslations("RoutesPage.calculation");
 
   // Initialize directions service and renderer
   useEffect(() => {
@@ -128,9 +135,11 @@ const Directions: React.FC<Props> = ({ waypoints, origin }) => {
 
   return (
     <div className="directions">
-      <p>Total Distance: {totalDistance}km</p>
       <p>
-        Total Duration: {totalDuration.hours}h {totalDuration.minutes}m
+        {t("totalDistance")}: {totalDistance}km
+      </p>
+      <p>
+        {t("totalDuration")}: {totalDuration.hours}h {totalDuration.minutes}m
       </p>
     </div>
   );

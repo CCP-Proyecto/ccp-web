@@ -297,5 +297,22 @@
         "quantityTotal": "Cantidad Total"
       }
     }
+  },
+  "RoutesPage": {
+    "title": "Generación de Rutas de Entrega",
+    "subtitle": "Selecciona la bodega de origen",
+    "form": {
+      "ordersSelectionLabel": "Selecciona los pedidos que deseas incluir en la ruta de entrega",
+      "status": {
+        "pending": "Pendiente"
+      },
+      "generateRouteButton": "Generar Ruta Óptima"
+    },
+    "loading": "Cargando el mapa...",
+    "calculation": {
+      "totalDistance": "Distancia total del recorrido",
+      "totalDuration": "Duración total del recorrido"
+    },
+    "optimizedRoute": "Ruta optimizada de entrega"
   }
 }
