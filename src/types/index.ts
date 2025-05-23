@@ -36,6 +36,7 @@ export interface Customer {
   id: number;
   idType: string;
   name: string;
+  address: string;
   salespersonId: string;
 }
 
@@ -70,4 +71,10 @@ export interface Report {
   salesperson: Salesman;
   orders: Order[];
   summary: ReportSummary;
+}
+
+export interface Waypoint {
+  id: string;
+  location: string;
+  stopover: boolean;
 }

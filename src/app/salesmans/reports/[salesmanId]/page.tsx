@@ -50,7 +50,9 @@ export default function SearchProductsPage() {
             <SelectItem value="quarterly">
               {tf("periodOptions.quarterly")}
             </SelectItem>
-            <SelectItem value="annually">{tf("periodOptions.yearly")}</SelectItem>
+            <SelectItem value="annually">
+              {tf("periodOptions.yearly")}
+            </SelectItem>
           </SelectContent>
         </Select>
 

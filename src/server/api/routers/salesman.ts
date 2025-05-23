@@ -2,8 +2,8 @@ import { z } from "zod";
 
 import { env } from "@/env";
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
+import type { Report, Salesman, Statement } from "@/types";
 import { TRPCError } from "@trpc/server";
-import type { Salesman, Statement, Report } from "@/types";
 
 const getAllSalesmanStatements = async (
   headers: Headers,

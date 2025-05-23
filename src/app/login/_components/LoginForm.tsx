@@ -57,6 +57,10 @@ export const LoginForm = () => {
         body: {
           app: "ccp-web",
         },
+        onSuccess: () => {
+          router.push("/");
+          toast("Bienvenido a CCP Admin");
+        },
       },
     );
 
@@ -68,9 +72,6 @@ export const LoginForm = () => {
       });
       return;
     }
-
-    router.push("/");
-    toast("Bienvenido a CCP Admin");
   };
 
   const onSubmit = async (data: LoginFormValues) => {
@@ -143,7 +144,7 @@ export const LoginForm = () => {
           </form>
         </Form>
       </div>
-      <p className="pt-50 text-sm">Version: 0.3.5</p>
+      <p className="pt-50 text-sm">Version: 0.3.6</p>
     </div>
   );
 };

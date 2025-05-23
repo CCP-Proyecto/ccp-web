@@ -32,10 +32,10 @@ export default async function SalesmanReportPage({ params }: Props) {
   );
 
   return (
-    <div className="flex min-h-screen flex-col items-center px-4 py-8 gap-4">
-      <h1 className="mb-16 font-normal text-4xl w-80">{t("title")}</h1>
+    <div className="flex min-h-screen flex-col items-center gap-4 px-4 py-8">
+      <h1 className="mb-16 w-80 font-normal text-4xl">{t("title")}</h1>
       <div className="w-80 pb-16">
-        <p className="text-2xl pb-4">
+        <p className="pb-4 text-2xl">
           <b>{tr("salesmanName")}</b> <br /> {report.salesperson.name}
         </p>
         <p>
@@ -54,7 +54,7 @@ export default async function SalesmanReportPage({ params }: Props) {
           <b>{tr("totalSold")}</b>: ${report.summary.totalRevenue}
         </p>
       </div>
-      <h2 className="text-2xl">{tr('soldProducts')}</h2>
+      <h2 className="text-2xl">{tr("soldProducts")}</h2>
       <div>
         <Table className="w-min">
           <TableHeader>
