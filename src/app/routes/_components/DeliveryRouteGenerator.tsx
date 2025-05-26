@@ -91,7 +91,7 @@ export const DeliveryRouteGenerator: React.FC<Props> = ({ apiKey }) => {
           >
             <div className="mr-4">
               <Checkbox
-                checked={selectedOrders[index]?.selected}
+                checked={orders[index]?.selected}
                 onCheckedChange={() => toggleOrderSelection(order.id)}
                 className="h-6 w-6 rounded border-2"
               />

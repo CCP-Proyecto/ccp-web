@@ -144,7 +144,7 @@ export const LoginForm = () => {
           </form>
         </Form>
       </div>
-      <p className="pt-50 text-sm">Version: 0.3.6</p>
+      <p className="pt-50 text-sm">Version: 0.3.7</p>
     </div>
   );
 };
