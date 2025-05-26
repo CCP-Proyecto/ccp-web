@@ -7,7 +7,7 @@ export const salesplanRouter = createTRPCRouter({
   createSalesplan: protectedProcedure
     .input(
       z.object({
-        // name: z.string(),
+        name: z.string(),
         description: z.string(),
         period: z.enum(["monthly", "quarterly", "yearly"]),
         salesmanId: z.string(),
@@ -22,7 +22,7 @@ export const salesplanRouter = createTRPCRouter({
         salespersonId: input.salesmanId,
       };
 
-      const res = await fetch(`${env.API_MS}/api/salesPlan`, {
+      const res = await fetch(`${env.API_MS}/api/salesplan`, {
         headers,
         method: "POST",
         body: JSON.stringify(formData),
